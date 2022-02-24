@@ -1,10 +1,9 @@
-from commands import *
+from kivy.app import App
 
 
-def main():
-    Command.start()
-    Command.introMenu()
+class TinApp(App):
+    pass
 
 
-if __name__ == '__main__':
-    main()
+
+TinApp().run()
