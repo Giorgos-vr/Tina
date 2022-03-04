@@ -1,6 +1,5 @@
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivymd.theming import ThemeManager
 
 
 class MainApp(MDApp):

@@ -1,70 +1,55 @@
 #:kivy 2.0
-MDNavigationLayout:
-    MDNavigationDrawer:
-        UserContentNavigationDrawer:
-            text: "Menu"
-            on_release:
-                scrnmngr.current = "ScreenMenu"
-        UserContentNavigationDrawer:
-            text: "Menu"
-            on_release:
-                scrnmngr.current = "ShapeGame"
-        UserContentNavigationDrawer:
-            text: "Menu"
-            on_release:
-                scrnmngr.current = "ObjectGame"
-        UserContentNavigationDrawer:
-            text: "Menu"
-            on_release:
-                scrnmngr.current = "ColourGame"
-        UserContentNavigationDrawer:
-            text: "Menu"
-            on_release:
-                scrnmngr.current = "NumberGame"
-        UserContentNavigationDrawer:
-            text: "Menu"
-            on_release:
-                scrnmngr.current = "LetterGame"
+ContentNavigationDrawer:
+
+    ScrollView:
+
+        MDList:
+
+            OneLineListItem:
+                text: "Screen 1"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "scr 1"
+
+            OneLineListItem:
+                text: "Screen 2"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "scr 2"
 
 
-    BoxLayout:
-        orientation: 'Vertical'
+    Screen:
+
         MDToolbar:
-            title: "Τίνα!"
-        ScreenManager:
-            id: scrnmngr
-                    
-            Screen:
-                name: "ScreenIntro"
-                MDLabel:
-                    text: "Intro"
+            id: toolbar
+            pos_hint: {"top": 1}
+            elevation: 10
+            title: "MDNavigationDrawer"
+            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
 
-            Screen:
-                name: "ScreenMenu"
-                MDLabel:
-                    text: "Menu"
+        MDNavigationLayout:
+            x: toolbar.height
 
-            Screen:
-                name: "ShapeGame"
-                MDLabel:
-                    text: "Shapes"
+            ScreenManager:
+                id: screen_manager
 
-            Screen:
-                name: "ObjectGame"
-                MDLabel:
-                    text: "Objects"
+                Screen:
+                    name: "scr 1"
 
-            Screen:
-                name: "ColourGame"
-                MDLabel:
-                    text: "Colours"
+                    MDLabel:
+                        text: "Screen 1"
+                        halign: "center"
 
-            Screen:
-                name: "NumberGame"
-                MDLabel:
-                    text: "Numbers"
+                Screen:
+                    name: "scr 2"
 
-            Screen:
-                name: "LetterGame"
-                MDLabel:
-                    text: "Letters"
+                    MDLabel:
+                        text: "Screen 2"
+                        halign: "center"
+
+            MDNavigationDrawer:
+                id: nav_drawer
+
+                ContentNavigationDrawer:
+                    screen_manager: screen_manager
+                    nav_drawer: nav_drawer
