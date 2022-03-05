@@ -1,13 +1,24 @@
+from itertools import count
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
+from commands import *
+
 
 class IntroWindow(Screen):
     pass
 
 class MenuWindow(Screen):
-    pass
+        counter = False
+        def on_enter(self):
+            while MenuWindow.counter == False:
+                Command.start()
+                Command.introMenu()
+                MenuWindow.counter = True
+                return MenuWindow.counter
+            else:
+                pass
+        
 
 class ShapeGame(Screen):
     pass
