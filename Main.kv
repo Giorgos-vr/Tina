@@ -1,55 +1,135 @@
 #:kivy 2.0
-ContentNavigationDrawer:
-
-    ScrollView:
-
-        MDList:
-
-            OneLineListItem:
-                text: "Screen 1"
-                on_press:
-                    root.nav_drawer.set_state("close")
-                    root.screen_manager.current = "scr 1"
-
-            OneLineListItem:
-                text: "Screen 2"
-                on_press:
-                    root.nav_drawer.set_state("close")
-                    root.screen_manager.current = "scr 2"
+WindowManager:
+    IntroWindow:
+    MenuWindow:
+    ShapeGame:
+    ColourGame:
+    LetterGame:
+    NumberGame:
 
 
-    Screen:
+<IntroWindow>:
+    name: "Intro"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
 
-        MDToolbar:
-            id: toolbar
-            pos_hint: {"top": 1}
-            elevation: 10
-            title: "MDNavigationDrawer"
-            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+        Label:
+            id:"intro"
+            text: "Intro"
+            font_size: 34
+        
+        Button:
+            text: "Main Menu"
+            font_size: 22
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "left"
+                
+        
+<MenuWindow>:
+    name: "menu"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
 
-        MDNavigationLayout:
-            x: toolbar.height
+        Label:
+            id:"menu"
+            text: "Menu Screen"
+            font_size: 34
+        Button:
+            text: "Shape Game"
+            font_size: 22
+            on_release:
+                app.root.current = "shapes"
+                root.manager.transition.direction = "left"
 
-            ScreenManager:
-                id: screen_manager
+        Button:
+            text: "Colour Game"
+            font_size: 22
+            on_release:
+                app.root.current = "colours"
+                root.manager.transition.direction = "left"
 
-                Screen:
-                    name: "scr 1"
+        Button:
+            text: "Letter Game"
+            font_size: 22
+            on_release:
+                app.root.current = "letters"
+                root.manager.transition.direction = "left"
 
-                    MDLabel:
-                        text: "Screen 1"
-                        halign: "center"
+        Button:
+            text: "Number Game"
+            font_size: 22
+            on_release:
+                app.root.current = "numbers"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Exit"
+            font_size: 22
+            on_release: app.root.current = exit()
 
-                Screen:
-                    name: "scr 2"
+<ShapeGame>:
+    name: "shapes"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            id:"shapes"
+            text: "Shapes Game"
+            font_size: 34
+        Button:
+            text: "Menu"
+            font_size: 22
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"
 
-                    MDLabel:
-                        text: "Screen 2"
-                        halign: "center"
+<ColourGame>:
+    name: "colours"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            id:"colours"
+            text: "colours Game"
+            font_size: 34
+        Button:
+            text: "Menu"
+            font_size: 22
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"
 
-            MDNavigationDrawer:
-                id: nav_drawer
+<LetterGame>:
+    name: "letters"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            id:"letters"
+            text: "letters Game"
+            font_size: 34
+        Button:
+            text: "Menu"
+            font_size: 22
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"
 
-                ContentNavigationDrawer:
-                    screen_manager: screen_manager
-                    nav_drawer: nav_drawer
+<NumberGame>:
+    name: "numbers"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            id:"numbers"
+            text: "numbers Game"
+            font_size: 34
+        Button:
+            text: "Menu"
+            font_size: 22
+            on_release: 
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"

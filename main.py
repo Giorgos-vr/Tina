@@ -1,11 +1,32 @@
-from kivymd.app import MDApp
+from kivy.app import App
 from kivy.lang import Builder
+from kivy.uix.widget import Widget
+from kivy.uix.screenmanager import ScreenManager, Screen
 
+class IntroWindow(Screen):
+    pass
 
-class MainApp(MDApp):
+class MenuWindow(Screen):
+    pass
+
+class ShapeGame(Screen):
+    pass
+
+class ColourGame(Screen):
+    pass
+
+class LetterGame(Screen):
+    pass
+
+class NumberGame(Screen):
+    pass
+
+class WindowManager(ScreenManager):
+    pass
+
+class MainApp(App):
     def build(self):
-        self.theme_cls.theme_style="Dark"
-        self.theme_cls.primary_palette="BlueGray"
         return Builder.load_file('Main.kv')
 
-MainApp().run()
+if __name__ == '__main__':
+    MainApp().run()
