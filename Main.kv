@@ -22,6 +22,7 @@ WindowManager:
         Button:
             text: "Main Menu"
             font_size: 22
+            size_hint: 1.0, 0.2
             on_release:
                 app.root.current = "menu"
                 root.manager.transition.direction = "left"
@@ -37,37 +38,40 @@ WindowManager:
             id:"menu"
             text: "Menu Screen"
             font_size: 34
-        Button:
-            text: "Shape Game"
-            font_size: 22
-            on_release:
-                app.root.current = "shapes"
-                root.manager.transition.direction = "left"
+            
+        BoxLayout:
+            size_hint: 1.0, 0.2
+            Button:
+                text: "Shape Game"
+                font_size: 22
+                on_release:
+                    app.root.current = "shapes"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Colour Game"
+                font_size: 22
+                on_release:
+                    app.root.current = "colours"
+                    root.manager.transition.direction = "left"
 
-        Button:
-            text: "Colour Game"
-            font_size: 22
-            on_release:
-                app.root.current = "colours"
-                root.manager.transition.direction = "left"
+            Button:
+                text: "Letter Game"
+                font_size: 22
+                on_release:
+                    app.root.current = "letters"
+                    root.manager.transition.direction = "left"
 
-        Button:
-            text: "Letter Game"
-            font_size: 22
-            on_release:
-                app.root.current = "letters"
-                root.manager.transition.direction = "left"
-
-        Button:
-            text: "Number Game"
-            font_size: 22
-            on_release:
-                app.root.current = "numbers"
-                root.manager.transition.direction = "left"
+            Button:
+                text: "Number Game"
+                font_size: 22
+                on_release:
+                    app.root.current = "numbers"
+                    root.manager.transition.direction = "left"
                 
         Button:
             text: "Exit"
             font_size: 22
+            size_hint: 1.0, 0.2
             on_release: app.root.current = exit()
 
 <ShapeGame>:
@@ -82,6 +86,7 @@ WindowManager:
         Button:
             text: "Menu"
             font_size: 22
+            size_hint: 1.0, 0.2
             on_release:
                 app.root.current = "menu"
                 root.manager.transition.direction = "right"
@@ -98,6 +103,7 @@ WindowManager:
         Button:
             text: "Menu"
             font_size: 22
+            size_hint: 1.0, 0.2
             on_release:
                 app.root.current = "menu"
                 root.manager.transition.direction = "right"
@@ -114,6 +120,7 @@ WindowManager:
         Button:
             text: "Menu"
             font_size: 22
+            size_hint: 1.0, 0.2            
             on_release:
                 app.root.current = "menu"
                 root.manager.transition.direction = "right"
@@ -130,6 +137,7 @@ WindowManager:
         Button:
             text: "Menu"
             font_size: 22
-            on_release: 
+            size_hint: 1.0, 0.2
+            on_release:
                 app.root.current = "menu"
                 root.manager.transition.direction = "right"

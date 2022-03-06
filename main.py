@@ -8,15 +8,27 @@ class IntroWindow(Screen):
     pass
 
 class MenuWindow(Screen):
-        counter = False
+        once = False
         def on_enter(self):
-            while MenuWindow.counter == False:
+            while MenuWindow.once == False:
                 Command.start()
                 Command.introMenu()
-                MenuWindow.counter = True
-                return MenuWindow.counter
+                MenuWindow.once = True
+                return MenuWindow.once
+
+'''            if Command.sel == "shapes":
+                ScreenManager().current = "shapes"
+            elif Command.sel == "colours":
+                ScreenManager().current = "colours"
+            elif Command.sel == "letters":
+                ScreenManager().current = "letters"
+            elif Command.sel == "numbers":
+                ScreenManager().current = "numbers"
             else:
                 pass
+'''
+
+                
         
 
 class ShapeGame(Screen):

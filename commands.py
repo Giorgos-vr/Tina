@@ -4,6 +4,7 @@ import time
 import playsound
 import speech_recognition as sr
 from gtts import gTTS as gt
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 
 class Command:
@@ -11,6 +12,7 @@ class Command:
     def __init__(self):
         Command.user_said = ""
         Command.user_name = ""
+        Command.sel = ""
 
     
     def say(text):
@@ -53,6 +55,32 @@ class Command:
         Command.audioIn()
         Command.greetUser()
 
+    def gameSelection():
+        Command.say(f"{Command.user_name} ποιό παιχνίδι θέλεις να παίξουμε?")
+        input = Command.audioIn().lower().split(' ')
+        print(input)
+        shapeSelect = ["σχήμα", "σχήματα"]
+        colourSelect = ["χρώμα", "χρώματα"]
+        letterSelect = ["γράμμα", "γράμματα"]
+        numberSelect = ["νούμερο", "νούμερα", "αριθμός", "αριθμοί"]
+        if any(word in input for word in shapeSelect):
+            Command.say("Πάμε για σχήματα!")
+            ScreenManager().current = "shapes"
+        elif any(word in input for word in colourSelect):
+            Command.say("Πάμε για χρώματα!")
+            ScreenManager().current = "colours"
+        elif any(word in input for word in letterSelect):
+            Command.say("Πάμε για γράμματα!")
+            ScreenManager().current = "letters"
+        elif any(word in input for word in numberSelect):
+            Command.say("Πάμε για αριθμούς!")
+            ScreenManager().current = "numbers"
+        else:
+            Command.say("Δεν σε κατάλαβα. Αν θέλεις διάλεξε από το μενού!")
+            return None
+
+        #return Command.sel
+
     def introMenu():
         Command.say(f"{Command.user_name} θέλεις να παίξουμε?")
         input = Command.audioIn().lower().split(' ')
@@ -60,9 +88,6 @@ class Command:
         positive_input = ["ναι", "αμέ", "αχά"]
         if any(word in input for word in positive_input):
             Command.say("Τέλεια!")
-            #call mainMenu()
-#        if "ναι" in input or "αμέ" in input or "αχά" in input:
-#            Command.say("Τέλεια!")
-            #call mainMenu()
+            Command.gameSelection()
         else:
             Command.say("Κρίμα!")
