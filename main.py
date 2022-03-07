@@ -16,17 +16,17 @@ class MenuWindow(Screen):
                 MenuWindow.once = True
                 return MenuWindow.once
 
-'''            if Command.sel == "shapes":
-                ScreenManager().current = "shapes"
-            elif Command.sel == "colours":
-                ScreenManager().current = "colours"
-            elif Command.sel == "letters":
-                ScreenManager().current = "letters"
-            elif Command.sel == "numbers":
-                ScreenManager().current = "numbers"
+            if Command.sel is ["shapes"]:
+                ScreenManager().switch_to = "shapes"
+            elif Command.sel is ["colours"]:
+                ScreenManager().switch_to = "colours"
+            elif Command.sel is ["letters"]:
+                ScreenManager().switch_to = "letters"
+            elif Command.sel is ["numbers"]:
+                ScreenManager().switch_to = "numbers"
             else:
                 pass
-'''
+
 
                 
         

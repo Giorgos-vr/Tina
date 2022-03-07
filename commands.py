@@ -65,21 +65,21 @@ class Command:
         numberSelect = ["νούμερο", "νούμερα", "αριθμός", "αριθμοί"]
         if any(word in input for word in shapeSelect):
             Command.say("Πάμε για σχήματα!")
-            ScreenManager().current = "shapes"
+            Command.sel = "shapes"
         elif any(word in input for word in colourSelect):
             Command.say("Πάμε για χρώματα!")
-            ScreenManager().current = "colours"
+            Command.sel = "colours"
         elif any(word in input for word in letterSelect):
             Command.say("Πάμε για γράμματα!")
-            ScreenManager().current = "letters"
+            Command.sel = "letters"
         elif any(word in input for word in numberSelect):
             Command.say("Πάμε για αριθμούς!")
-            ScreenManager().current = "numbers"
+            Command.sel = "numbers"
         else:
             Command.say("Δεν σε κατάλαβα. Αν θέλεις διάλεξε από το μενού!")
-            return None
+            Command.sel = None
 
-        #return Command.sel
+        return Command.sel
 
     def introMenu():
         Command.say(f"{Command.user_name} θέλεις να παίξουμε?")
