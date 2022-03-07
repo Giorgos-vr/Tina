@@ -9,23 +9,35 @@ class IntroWindow(Screen):
 
 class MenuWindow(Screen):
         once = False
-        def on_enter(self):
+        twice = False
+        def on_enter(self, *args):
             while MenuWindow.once == False:
                 Command.start()
                 Command.introMenu()
                 MenuWindow.once = True
-                return MenuWindow.once
+                while MenuWindow.twice == False:
+                    if Command.sel == "shapes":
+                        self.parent.current = "shapes"
+                        MenuWindow.twice = True
+                        return MenuWindow.twice
+                    elif Command.sel == "colours":
+                        self.parent.current = "colours"
+                        MenuWindow.twice = True
+                        return MenuWindow.twice
+                    elif Command.sel == "letters":
+                        self.parent.current = "letters"
+                        MenuWindow.twice = True
+                        return MenuWindow.twice
+                    elif Command.sel == "numbers":
+                        self.parent.current = "numbers"
+                        MenuWindow.twice = True
+                        return MenuWindow.twice
+                    else:
+                        MenuWindow.twice = True
+                        return MenuWindow.twice
+                
 
-            if Command.sel == "shapes":
-                ScreenManager().switch_to = "shapes"
-            elif Command.sel == "colours":
-                ScreenManager().switch_to = "colours"
-            elif Command.sel == "letters":
-                ScreenManager().switch_to = "letters"
-            elif Command.sel == "numbers":
-                ScreenManager().switch_to = "numbers"
-            else:
-                pass
+            return MenuWindow.once
 
 
                 
