@@ -35,6 +35,7 @@ class Command:
                 print(Command.user_said)
             except sr.UnknownValueError:
                 Command.say("Δεν σε κατάλαβα, συγνώμη!")
+                Command.user_said = " "
             except sr.RequestError:
                 Command.say("Αδυναμία σύνδεσης!")
         
@@ -58,10 +59,10 @@ class Command:
         Command.say(f"{Command.user_name} ποιό παιχνίδι θέλεις να παίξουμε?")
         input = Command.audioIn().lower().split(' ')
         print(input)
-        shapeSelect = ["σχήμα", "σχήματα"]
-        colourSelect = ["χρώμα", "χρώματα"]
-        letterSelect = ["γράμμα", "γράμματα"]
-        numberSelect = ["νούμερο", "νούμερα", "αριθμός", "αριθμοί"]
+        shapeSelect = ["σχήμα", "σχήματα", "σχηματάκι", "σχηματάκια"]
+        colourSelect = ["χρώμα", "χρώματα", "χρωματάκι", "χρωματάκια"]
+        letterSelect = ["γράμμα", "γράμματα", "γραμματάκια", "γραμματάκι", "άλφα", "βήτα", "αλφαβήτα"]
+        numberSelect = ["νούμερο", "νούμερα", "αριθμός", "αριθμοί", "αριθμούς"]
         if any(word in input for word in shapeSelect):
             Command.say("Πάμε για σχήματα!")
             Command.sel = "shapes"
@@ -90,3 +91,5 @@ class Command:
             Command.gameSelection()
         else:
             Command.say("Κρίμα!")
+            Command.sel = None
+        
