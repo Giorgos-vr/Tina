@@ -3,6 +3,7 @@ import random
 import playsound
 import speech_recognition as sr
 from gtts import gTTS as gt
+from kivy.uix.image import Image
 
 
 class Command:
@@ -93,16 +94,27 @@ class Command:
             Command.sel = None
 
 
+class Game:
+
+    def __init__(self) -> None:
+        pass
+
+    def tenRandShapes():
+        for x in range(3):
+
+            random_shape = {"τετράγωνο": 'shapes/square.png', "τρίγωνο": 'shapes/triangle.png', "κύκλος": 'shapes/circle.png'}
+            random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
+            #print(random_shape_value)
+            Command.say(random_shape_key)
+            return Image(source=random_shape_value)
+
+
+#Game.tenRandShapes()
 
 
 
-'''def test():
+# def test():
     
-    for x in range(3):
 
-        random_shape = ["τετράγωνο", "τρίγωνο", "κύκλος"]
-        random_shape_select = random.choice(random_shape)
-        print(random_shape_select)
-        Command.say(random_shape_select)
+# test()
 
-test()'''

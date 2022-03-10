@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.image import Image
 from commands import *
 
 
@@ -37,10 +38,14 @@ class MenuWindow(Screen):
         
 
 class ShapeGame(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        with self.canvas:
-            pass
+    def on_enter(self, *args):
+        for x in range(3):
+
+            random_shape = {"τετράγωνο": 'square.png', "τρίγωνο": 'striangle.png', "κύκλος": 'circle.png'}
+            random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
+            #print(random_shape_value)
+            Command.say(random_shape_key)
+            return Image(source=random_shape_value)
 
     
 class ColourGame(Screen):
