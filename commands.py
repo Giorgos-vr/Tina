@@ -1,5 +1,7 @@
 import os
+from struct import unpack
 import time
+import random
 import playsound
 import speech_recognition as sr
 from gtts import gTTS as gt
@@ -92,4 +94,16 @@ class Command:
         else:
             Command.say("Κρίμα!")
             Command.sel = None
-        
+
+
+
+'''def test():
+    
+    for x in range(3):
+
+        random_shape = ["τετράγωνο", "τρίγωνο", "κύκλος"]
+        random_shape_select = random.choice(random_shape)
+        print(random_shape_select)
+        Command.say(random_shape_select)
+
+test()'''

@@ -9,32 +9,25 @@ class IntroWindow(Screen):
 
 class MenuWindow(Screen):
         once = False
-        twice = False
         def on_enter(self, *args):
             while MenuWindow.once == False:
                 Command.start()
                 Command.introMenu()
-                MenuWindow.once = True
-                while MenuWindow.twice == False:
+                while MenuWindow.once == False:
                     if Command.sel == "shapes":
                         self.parent.current = "shapes"
-                        MenuWindow.twice = True
-                        return MenuWindow.twice
+                        MenuWindow.once = True
                     elif Command.sel == "colours":
                         self.parent.current = "colours"
-                        MenuWindow.twice = True
-                        return MenuWindow.twice
+                        MenuWindow.once = True
                     elif Command.sel == "letters":
                         self.parent.current = "letters"
-                        MenuWindow.twice = True
-                        return MenuWindow.twice
+                        MenuWindow.once = True
                     elif Command.sel == "numbers":
                         self.parent.current = "numbers"
-                        MenuWindow.twice = True
-                        return MenuWindow.twice
+                        MenuWindow.once = True
                     else:
-                        MenuWindow.twice = True
-                        return MenuWindow.twice
+                        MenuWindow.once = True
                 
 
             return MenuWindow.once
