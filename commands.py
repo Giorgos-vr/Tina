@@ -1,11 +1,8 @@
 import os
-from struct import unpack
-import time
 import random
 import playsound
 import speech_recognition as sr
 from gtts import gTTS as gt
-from kivy.uix.screenmanager import ScreenManager, Screen
 
 
 class Command:
@@ -94,6 +91,8 @@ class Command:
         else:
             Command.say("Κρίμα!")
             Command.sel = None
+
+
 
 
 

@@ -37,8 +37,12 @@ class MenuWindow(Screen):
         
 
 class ShapeGame(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        with self.canvas:
+            pass
 
+    
 class ColourGame(Screen):
     pass
 
