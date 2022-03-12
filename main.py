@@ -1,7 +1,10 @@
+from itertools import count
+import random
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.image import Image
+from kivy.properties import StringProperty
 from commands import *
 
 
@@ -9,7 +12,8 @@ class IntroWindow(Screen):
     pass
 
 class MenuWindow(Screen):
-        once = False
+    pass
+'''        once = False
         def on_enter(self, *args):
             while MenuWindow.once == False:
                 Command.start()
@@ -32,20 +36,32 @@ class MenuWindow(Screen):
                 
 
             return MenuWindow.once
-
+'''
 
                 
         
 
 class ShapeGame(Screen):
+    rand_shape = StringProperty()
+    count = 0
+    def on_pre_enter(self, *args):        
+        random_shape = {"τετράγωνο":'shapes/square.png', "τρίγωνο":'shapes/triangle.jpg', "κύκλος":'shapes/circle.jpg'}
+        random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
+        print(random_shape_key)
+        self.rand_shape_key = random_shape_key
+        self.rand_shape = random_shape_value
+        
     def on_enter(self, *args):
-        for x in range(3):
-
-            random_shape = {"τετράγωνο": 'square.png', "τρίγωνο": 'striangle.png', "κύκλος": 'circle.png'}
-            random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
-            #print(random_shape_value)
-            Command.say(random_shape_key)
-            return Image(source=random_shape_value)
+#        while self.count < 3:
+            input = Command.audioIn().lower().split(' ')
+            if any(word in input for word in [self.rand_shape_key]):
+                Command.say("Σωστά!")
+#                self.count += 1
+#                ShapeGame.on_pre_enter(self, *args)
+            else:
+                Command.say("Λάθος!")
+#                self.count += 1
+#                ShapeGame.on_pre_enter(self, *args)
 
     
 class ColourGame(Screen):
@@ -60,7 +76,7 @@ class NumberGame(Screen):
 class WindowManager(ScreenManager):
     pass
 
-class MainApp(App):
+class MainApp(App):  
     def build(self):
         return Builder.load_file('Main.kv')
 

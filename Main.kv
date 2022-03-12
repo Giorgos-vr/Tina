@@ -76,13 +76,15 @@ WindowManager:
 
 <ShapeGame>:
     name: "shapes"
+    id: ShapeGame
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height
-        Label:
+        Image:
             id:"shapes"
-            text: "Shapes Game"
-            font_size: 34
+            screen: ShapeGame
+            source: self.screen.rand_shape
+            before_source: self.source
 
         BoxLayout:
             size_hint: 1.0, 0.2
@@ -96,7 +98,8 @@ WindowManager:
             Button:
                 text: "Exit"
                 font_size: 22
-                on_release: app.root.current = exit()
+                on_release:
+                    app.root.current = exit()
 
 <ColourGame>:
     name: "colours"
