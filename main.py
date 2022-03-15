@@ -11,7 +11,8 @@ class IntroWindow(Screen):
     pass
 
 class MenuWindow(Screen):
-    once = False
+    pass
+'''    once = False
     def on_enter(self, *args):
         while MenuWindow.once == False:
             Command.start()
@@ -35,7 +36,7 @@ class MenuWindow(Screen):
 
         return MenuWindow.once
 
-
+'''
                 
         
 
@@ -49,7 +50,7 @@ class ShapeGame(Screen):
             if ShapeGame.count1 < 5:
                 if ShapeGame.count1 < 5:
                     Command.say("Τι είναι?")
-                    random_shape = {"ορθογώνιο":'shapes/rectangle.jpg', "οβάλ":'shapes/oval.jpg', "αστέρι":'shapes/star.png', "τετράγωνο":'shapes/square.png', "τρίγωνο":'shapes/triangle.jpg', "κύκλος":'shapes/circle.jpg'}
+                    random_shape = {"ορθογώνιο":'shapes/rectangle.png', "οβάλ":'shapes/oval.png', "αστέρι":'shapes/star.png', "τετράγωνο":'shapes/square.png', "τρίγωνο":'shapes/triangle.png', "κύκλος":'shapes/circle.png'}
                     random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
                     print(random_shape_key)
                     self.rand_shape_key = random_shape_key
