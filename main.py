@@ -50,7 +50,7 @@ class ShapeGame(Screen):
             if ShapeGame.count1 < 5:
                 if ShapeGame.count1 < 5:
                     Command.say("Τι είναι?")
-                    random_shape = {"ορθογώνιο":'shapes/rectangle.png', "οβάλ":'shapes/oval.png', "αστέρι":'shapes/star.png', "τετράγωνο":'shapes/square.png', "τρίγωνο":'shapes/triangle.png', "κύκλος":'shapes/circle.png'}
+                    random_shape = {("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png', ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png', ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
                     random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
                     print(random_shape_key)
                     self.rand_shape_key = random_shape_key
@@ -73,12 +73,18 @@ class ShapeGame(Screen):
             if ShapeGame.count2 < 5:
                 if ShapeGame.count2 < 5:
                     input = Command.audioIn().lower().split(' ')
-                    if any(word in input for word in [self.rand_shape_key]):
+                    if Command.user_said == None:
+                        ShapeGame.count2 += 1
+                        return ShapeGame.count2
+                    elif any(word in input for word in self.rand_shape_key):
                         Command.say("Σωστά!")
                         ShapeGame.count2 += 1
                         return ShapeGame.count2
-                    else:
+                    elif Command.bad_read == False:
                         Command.say("Λάθος!")
+                        ShapeGame.count2 += 1
+                        return ShapeGame.count2
+                    else:
                         ShapeGame.count2 += 1
                         return ShapeGame.count2
             elif ShapeGame.count2 >=5:
