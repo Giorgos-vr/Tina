@@ -41,7 +41,6 @@ class Command:
                 Command.user_said = ""
                 Command.bad_read = True
                 Command.say("Αδυναμία σύνδεσης!")
-                
         return Command.user_said
 
 
@@ -70,15 +69,15 @@ class Command:
         input = Command.audioIn().lower().split(' ')
         print(input)
         shapeSelect = ["σχήμα", "σχήματα", "σχηματάκι", "σχηματάκια"]
-        colourSelect = ["χρώμα", "χρώματα", "χρωματάκι", "χρωματάκια"]
+        colourSelect = ["αντικείμενα", "πράγματα", "φρούτα", "φρουτάκια"]
         letterSelect = ["γράμμα", "γράμματα", "γραμματάκια", "γραμματάκι", "άλφα", "βήτα", "αλφαβήτα"]
         numberSelect = ["νούμερο", "νούμερα", "αριθμός", "αριθμοί", "αριθμούς"]
         if any(word in input for word in shapeSelect):
             Command.say("Πάμε για σχήματα!")
             Command.sel = "shapes"
         elif any(word in input for word in colourSelect):
-            Command.say("Πάμε για χρώματα!")
-            Command.sel = "colours"
+            Command.say("Πάμε για αντικείμενα!")
+            Command.sel = "items"
         elif any(word in input for word in letterSelect):
             Command.say("Πάμε για γράμματα!")
             Command.sel = "letters"
@@ -86,7 +85,7 @@ class Command:
             Command.say("Πάμε για αριθμούς!")
             Command.sel = "numbers"
         else:
-            Command.say("Δεν σε κατάλαβα. Αν θέλεις διάλεξε από το μενού!")
+            Command.say("Αν θέλεις διάλεξε από το μενού!")
             Command.sel = None
 
         return Command.sel

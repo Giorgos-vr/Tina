@@ -11,8 +11,7 @@ class IntroWindow(Screen):
     pass
 
 class MenuWindow(Screen):
-    pass
-'''    once = False
+    once = False
     def on_enter(self, *args):
         while MenuWindow.once == False:
             Command.start()
@@ -21,8 +20,8 @@ class MenuWindow(Screen):
                 if Command.sel == "shapes":
                     self.parent.current = "shapes"
                     MenuWindow.once = True
-                elif Command.sel == "colours":
-                    self.parent.current = "colours"
+                elif Command.sel == "items":
+                    self.parent.current = "items"
                     MenuWindow.once = True
                 elif Command.sel == "letters":
                     self.parent.current = "letters"
@@ -36,7 +35,7 @@ class MenuWindow(Screen):
 
         return MenuWindow.once
 
-'''
+
                 
         
 
@@ -50,7 +49,7 @@ class ShapeGame(Screen):
             if ShapeGame.count1 < 5:
                 if ShapeGame.count1 < 5:
                     Command.say("Τι είναι?")
-                    random_shape = {("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png', ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png', ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
+                    random_shape = {("τραπέζιο", "τραπέζι", "τραπεζοειδές", "τετράγωνο", "παραλληλόγραμμο"):'shapes/trapezoid.png', ("διαμάντι", "ρόμβος", "παραλληλόγραμο", "τετράγωνο"):'shapes/diamond.png', ("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png', ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png', ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
                     random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
                     print(random_shape_key)
                     self.rand_shape_key = random_shape_key
@@ -97,8 +96,61 @@ class ShapeGame(Screen):
         Clock.schedule_interval(callback_on_image, 10)
 
     
-class ColourGame(Screen):
-    pass
+class ItemGame(Screen):
+    rand_item = StringProperty()
+    count1 = 0
+    count2 = 0
+
+    def on_pre_enter(self, *args):        
+        def callback_pre_item(dt):
+            if ItemGame.count1 < 5:
+                if ItemGame.count1 < 5:
+                    Command.say("Τι είναι?")
+                    random_item = {("τραπέζιο", "τραπέζι", "τραπεζοειδές", "τετράγωνο", "παραλληλόγραμμο"):'shapes/trapezoid.png', ("διαμάντι", "ρόμβος", "παραλληλόγραμο", "τετράγωνο"):'shapes/diamond.png', ("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png', ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png', ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
+                    random_item_key, random_item_value = random.choice(list(random_item.items()))
+                    print(random_item_key)
+                    self.rand_item_key = random_item_key
+                    self.rand_item = random_item_value
+                    ItemGame.count1 += 1
+                    return ItemGame.count1
+                elif ItemGame.count1 >= 5:
+                    pass
+            elif ItemGame.count1 >=5:
+                Clock.unschedule(callback_pre_item)
+                ItemGame.count1 = 0
+                return ItemGame.count1
+
+        Clock.schedule_once(callback_pre_item)
+        Clock.schedule_interval(callback_pre_item, 10)
+
+        
+    def on_enter(self, *args):
+        def callback_on_item(dt):
+            if ItemGame.count2 < 5:
+                if ItemGame.count2 < 5:
+                    input = Command.audioIn().lower().split(' ')
+                    if Command.user_said == None:
+                        ItemGame.count2 += 1
+                        return ItemGame.count2
+                    elif any(word in input for word in self.rand_item_key):
+                        Command.say("Σωστά!")
+                        ItemGame.count2 += 1
+                        return ItemGame.count2
+                    elif Command.bad_read == False:
+                        Command.say("Λάθος!")
+                        ItemGame.count2 += 1
+                        return ItemGame.count2
+                    else:
+                        ItemGame.count2 += 1
+                        return ItemGame.count2
+            elif ItemGame.count2 >=5:
+                Clock.unschedule(callback_on_item)
+                ItemGame.count2 = 0
+                Command.say("Μπράβο!")
+                return ItemGame.count2
+
+        Clock.schedule_once(callback_on_item)
+        Clock.schedule_interval(callback_on_item, 10)
 
 class LetterGame(Screen):
     pass

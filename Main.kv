@@ -3,7 +3,7 @@ WindowManager:
     IntroWindow:
     MenuWindow:
     ShapeGame:
-    ColourGame:
+    ItemGame:
     LetterGame:
     NumberGame:
 
@@ -48,10 +48,10 @@ WindowManager:
                     app.root.current = "shapes"
                     root.manager.transition.direction = "left"
             Button:
-                text: "Colour Game"
+                text: "Items Game"
                 font_size: 22
                 on_release:
-                    app.root.current = "colours"
+                    app.root.current = "items"
                     root.manager.transition.direction = "left"
 
             Button:
@@ -102,15 +102,18 @@ WindowManager:
                 on_release:
                     app.root.current = exit()
 
-<ColourGame>:
-    name: "colours"
+<ItemGame>:
+    name: "items"
+    id: ItemGame
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height
-        Label:
-            id:"colours"
-            text: "colours Game"
-            font_size: 34
+        Image:
+            id:"item"
+            screen: ItemGame
+            source: root.rand_item
+            before_source: self.source
+
         BoxLayout:
             size_hint: 1.0, 0.2
             size: root.width, root.height
