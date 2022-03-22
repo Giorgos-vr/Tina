@@ -106,7 +106,7 @@ class ItemGame(Screen):
             if ItemGame.count1 < 5:
                 if ItemGame.count1 < 5:
                     Command.say("Τι είναι?")
-                    random_item = {("τραπέζιο", "τραπέζι", "τραπεζοειδές", "τετράγωνο", "παραλληλόγραμμο"):'shapes/trapezoid.png', ("διαμάντι", "ρόμβος", "παραλληλόγραμο", "τετράγωνο"):'shapes/diamond.png', ("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png', ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png', ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
+                    random_item = {("μαύρο", "άδειο", "σκοτεινό"):'items/black.png', ("μπλε", "γαλάζιο", "γαλανό"):'items/blue.png', ("πράσινο", "πρασινάκι"):'items/green.png', ("ροζ", "κόκκινο"):'items/pink.png', ("μωβ", "φούξια"):'items/purple.png', ("κόκκινο", "ροζ", "κοκκινάκι"):'items/red.png', ("άσπρο", "λευκό"):'items/white.png', ("κίτρινο", "καναρινί"):'items/yellow.png'}
                     random_item_key, random_item_value = random.choice(list(random_item.items()))
                     print(random_item_key)
                     self.rand_item_key = random_item_key
@@ -128,11 +128,12 @@ class ItemGame(Screen):
         def callback_on_item(dt):
             if ItemGame.count2 < 5:
                 if ItemGame.count2 < 5:
-                    input = Command.audioIn().lower().split(' ')
+                    input = Command.audioIn()
+                    select = input.lower().split(' ')
                     if Command.user_said == None:
                         ItemGame.count2 += 1
                         return ItemGame.count2
-                    elif any(word in input for word in self.rand_item_key):
+                    elif any(word in select for word in self.rand_item_key):
                         Command.say("Σωστά!")
                         ItemGame.count2 += 1
                         return ItemGame.count2
