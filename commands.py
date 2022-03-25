@@ -68,15 +68,15 @@ class Command:
 
         input = Command.audioIn().lower().split(' ')
         print(input)
-        shapeSelect = ["σχήμα", "σχήματα", "σχηματάκι", "σχηματάκια"]
-        itemSelect = ["αντικείμενα", "πράγματα", "φρούτα", "φρουτάκια", "χρώματα", "χρωματάκια"]
+        shapeSelect = ["σχήμα", "σχήματα", "σχηματάκι", "σχηματάκια", "χρώματα", "χρωματάκια"]
+        itemSelect = ["αντικείμενα", "πράγματα", "φρούτα", "φρουτάκια", "ζώα", "ζωάκια"]
         letterSelect = ["γράμμα", "γράμματα", "γραμματάκια", "γραμματάκι", "άλφα", "βήτα", "αλφαβήτα"]
         numberSelect = ["νούμερο", "νούμερα", "αριθμός", "αριθμοί", "αριθμούς"]
         if any(word in input for word in shapeSelect):
-            Command.say("Πάμε για σχήματα!")
+            Command.say("Πάμε για σχήματα και χρώματα!")
             Command.sel = "shapes"
         elif any(word in input for word in itemSelect):
-            Command.say("Πάμε για χρώματα και αντικείμενα!")
+            Command.say("Πάμε για αντικείμενα και ζώα!")
             Command.sel = "items"
         elif any(word in input for word in letterSelect):
             Command.say("Πάμε για γράμματα!")

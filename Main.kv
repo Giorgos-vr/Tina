@@ -42,23 +42,16 @@ WindowManager:
         BoxLayout:
             size_hint: 1.0, 0.2
             Button:
-                text: "Shapeσ"
+                text: "Shapes&colours"
                 font_size: 22
                 on_release:
                     app.root.current = "shapes"
                     root.manager.transition.direction = "left"
             Button:
-                text: "Items&colours"
+                text: "Items&animals"
                 font_size: 22
                 on_release:
                     app.root.current = "items"
-                    root.manager.transition.direction = "left"
-
-            Button:
-                text: "Letters"
-                font_size: 22
-                on_release:
-                    app.root.current = "letters"
                     root.manager.transition.direction = "left"
 
             Button:
@@ -66,6 +59,13 @@ WindowManager:
                 font_size: 22
                 on_release:
                     app.root.current = "numbers"
+                    root.manager.transition.direction = "left"
+
+            Button:
+                text: "Letters"
+                font_size: 22
+                on_release:
+                    app.root.current = "letters"
                     root.manager.transition.direction = "left"
                 
         Button:

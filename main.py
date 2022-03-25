@@ -1,3 +1,4 @@
+# coding=utf-8
 import random
 from kivy.app import App
 from kivy.lang import Builder
@@ -49,7 +50,7 @@ class ShapeGame(Screen):
             if ShapeGame.count1 < 5:
                 if ShapeGame.count1 < 5:
                     Command.say("Τι είναι?")
-                    random_shape = {("τραπέζιο", "τραπέζι", "τραπεζοειδές", "τετράγωνο", "παραλληλόγραμμο"):'shapes/trapezoid.png', ("διαμάντι", "ρόμβος", "παραλληλόγραμο", "τετράγωνο"):'shapes/diamond.png', ("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png', ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png', ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
+                    random_shape = {('μαύρο', 'άδειο', 'σκοτεινό'):'shapes/black.png', ('μπλε', 'γαλάζιο', 'γαλανό'):'shapes/blue.png', ("πράσινο", "πρασινάκι"):'shapes/green.png', ("ροζ", "κόκκινο"):'shapes/pink.png', ("μωβ", "φούξια"):'shapes/purple.png', ("κόκκινο", "ροζ", "κοκκινάκι"):'shapes/red.png', ("άσπρο", "λευκό"):'shapes/white.png', ("κίτρινο", "κιτρινάκι", "καναρινί"):'shapes/yellow.png', ("τραπέζιο", "τραπέζι", "τραπεζοειδές", "τετράγωνο", "παραλληλόγραμμο"):'shapes/trapezoid.png', ("διαμάντι", "ρόμβος", "παραλληλόγραμο", "τετράγωνο"):'shapes/diamond.png', ("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png', ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png', ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
                     random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
                     print(random_shape_key)
                     self.rand_shape_key = random_shape_key
@@ -76,7 +77,7 @@ class ShapeGame(Screen):
                         ShapeGame.count2 += 1
                         return ShapeGame.count2
                     elif any(word in input for word in self.rand_shape_key):
-                        Command.say("Σωστά!")
+                        Command.say("πολύ σωστά!")
                         ShapeGame.count2 += 1
                         return ShapeGame.count2
                     elif Command.bad_read == False:
@@ -89,7 +90,7 @@ class ShapeGame(Screen):
             elif ShapeGame.count2 >=5:
                 Clock.unschedule(callback_on_image)
                 ShapeGame.count2 = 0
-                Command.say("Μπράβο!")
+                Command.say(f"Μπράβο {Command.user_name}!")
                 return ShapeGame.count2
 
         Clock.schedule_once(callback_on_image)
@@ -103,19 +104,19 @@ class ItemGame(Screen):
 
     def on_pre_enter(self, *args):        
         def callback_pre_item(dt):
-            if ItemGame.count1 < 5:
-                if ItemGame.count1 < 5:
+            if ItemGame.count1 < 10:
+                if ItemGame.count1 < 10:
                     Command.say("Τι είναι?")
-                    random_item = {("μαύρο", "άδειο", "σκοτεινό"):'items/black.png', ("μπλε", "γαλάζιο", "γαλανό"):'items/blue.png', ("πράσινο", "πρασινάκι"):'items/green.png', ("ροζ", "κόκκινο"):'items/pink.png', ("μωβ", "φούξια"):'items/purple.png', ("κόκκινο", "ροζ", "κοκκινάκι"):'items/red.png', ("άσπρο", "λευκό"):'items/white.png', ("κίτρινο", "καναρινί"):'items/yellow.png'}
+                    random_item = {("αρκούδα", "αρκουδάκι", "αρκουδίτσα", "καφέ"):'items/bear.png', ("γουρούνι", "γουρουνάκι"):'items/pig.png', ("ποντίκι", "ποντικάκι", "αρουραίος", "χάμστερ"):'items/mouse.png', ("ψάρι", "ψαράκι"):'items/fish.png', ("σκυλί", "σκυλάκι"):'items/dog.png', ("ελάφι", "ελαφάκι"):'items/deer.gif', ("γάτα", "γατούλα", "γατάκι", "γατίτσα"):'items/cat.png', ("πουλί", "περιστέρι", "περιστεράκι", "πουλάκι"):'items/bird.png', ("ανανάς", "ανανά"):'items/pineapple.png', ("πορτοκάλι", "πορτοκαλάκι"):'items/orange.png', ("λεμόνι", "λεμονάκι"):'items/lemon.png', ("κεράσι", "κερασάκι", "κεράσια", "κερασάκια"):'items/cherry.png', ("μπανάνα", "μπανανίτσα", "μπανανούλα"):'items/banana.png', ("μήλο", "μηλαράκι"):'items/apple.png'}
                     random_item_key, random_item_value = random.choice(list(random_item.items()))
                     print(random_item_key)
                     self.rand_item_key = random_item_key
                     self.rand_item = random_item_value
                     ItemGame.count1 += 1
                     return ItemGame.count1
-                elif ItemGame.count1 >= 5:
+                elif ItemGame.count1 >= 10:
                     pass
-            elif ItemGame.count1 >=5:
+            elif ItemGame.count1 >=10:
                 Clock.unschedule(callback_pre_item)
                 ItemGame.count1 = 0
                 return ItemGame.count1
@@ -126,15 +127,15 @@ class ItemGame(Screen):
         
     def on_enter(self, *args):
         def callback_on_item(dt):
-            if ItemGame.count2 < 5:
-                if ItemGame.count2 < 5:
+            if ItemGame.count2 < 10:
+                if ItemGame.count2 < 10:
                     input = Command.audioIn()
                     select = input.lower().split(' ')
                     if Command.user_said == None:
                         ItemGame.count2 += 1
                         return ItemGame.count2
                     elif any(word in select for word in self.rand_item_key):
-                        Command.say("Σωστά!")
+                        Command.say("πολύ σωστά!")
                         ItemGame.count2 += 1
                         return ItemGame.count2
                     elif Command.bad_read == False:
@@ -144,10 +145,10 @@ class ItemGame(Screen):
                     else:
                         ItemGame.count2 += 1
                         return ItemGame.count2
-            elif ItemGame.count2 >=5:
+            elif ItemGame.count2 >=10:
                 Clock.unschedule(callback_on_item)
                 ItemGame.count2 = 0
-                Command.say("Μπράβο!")
+                Command.say(f"Μπράβο {Command.user_name}!")
                 return ItemGame.count2
 
         Clock.schedule_once(callback_on_item)
