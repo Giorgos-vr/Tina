@@ -1,4 +1,3 @@
-# coding=utf-8
 import random
 from kivy.app import App
 from kivy.lang import Builder
@@ -50,7 +49,16 @@ class ShapeGame(Screen):
             if ShapeGame.count1 < 5:
                 if ShapeGame.count1 < 5:
                     Command.say("Τι είναι?")
-                    random_shape = {('μαύρο', 'άδειο', 'σκοτεινό'):'shapes/black.png', ('μπλε', 'γαλάζιο', 'γαλανό'):'shapes/blue.png', ("πράσινο", "πρασινάκι"):'shapes/green.png', ("ροζ", "κόκκινο"):'shapes/pink.png', ("μωβ", "φούξια"):'shapes/purple.png', ("κόκκινο", "ροζ", "κοκκινάκι"):'shapes/red.png', ("άσπρο", "λευκό"):'shapes/white.png', ("κίτρινο", "κιτρινάκι", "καναρινί"):'shapes/yellow.png', ("τραπέζιο", "τραπέζι", "τραπεζοειδές", "τετράγωνο", "παραλληλόγραμμο"):'shapes/trapezoid.png', ("διαμάντι", "ρόμβος", "παραλληλόγραμο", "τετράγωνο"):'shapes/diamond.png', ("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png', ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png', ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
+                    random_shape = {('μαύρο', 'άδειο', 'σκοτεινό'):'shapes/black.png',
+                        ('μπλε', 'γαλάζιο', 'γαλανό'):'shapes/blue.png', ("πράσινο", "πρασινάκι"):'shapes/green.png',
+                        ("ροζ", "κόκκινο"):'shapes/pink.png', ("μωβ", "φούξια"):'shapes/purple.png',
+                        ("κόκκινο", "ροζ", "κοκκινάκι"):'shapes/red.png', ("άσπρο", "λευκό"):'shapes/white.png',
+                        ("κίτρινο", "κιτρινάκι", "καναρινί"):'shapes/yellow.png',
+                        ("παραλληλόγραμμο", "τραπέζιο", "τραπέζι", "τετράγωνο", "τραπεζοειδές"):'shapes/trapezoid.png',
+                        ("διαμάντι", "ρόμβος", "παραλληλόγραμο", "τετράγωνο"):'shapes/diamond.png',
+                        ("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png',
+                        ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png',
+                        ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
                     random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
                     print(random_shape_key)
                     self.rand_shape_key = random_shape_key
@@ -107,7 +115,14 @@ class ItemGame(Screen):
             if ItemGame.count1 < 10:
                 if ItemGame.count1 < 10:
                     Command.say("Τι είναι?")
-                    random_item = {("αρκούδα", "αρκουδάκι", "αρκουδίτσα", "καφέ"):'items/bear.png', ("γουρούνι", "γουρουνάκι"):'items/pig.png', ("ποντίκι", "ποντικάκι", "αρουραίος", "χάμστερ"):'items/mouse.png', ("ψάρι", "ψαράκι"):'items/fish.png', ("σκυλί", "σκυλάκι"):'items/dog.png', ("ελάφι", "ελαφάκι"):'items/deer.gif', ("γάτα", "γατούλα", "γατάκι", "γατίτσα"):'items/cat.png', ("πουλί", "περιστέρι", "περιστεράκι", "πουλάκι"):'items/bird.png', ("ανανάς", "ανανά"):'items/pineapple.png', ("πορτοκάλι", "πορτοκαλάκι"):'items/orange.png', ("λεμόνι", "λεμονάκι"):'items/lemon.png', ("κεράσι", "κερασάκι", "κεράσια", "κερασάκια"):'items/cherry.png', ("μπανάνα", "μπανανίτσα", "μπανανούλα"):'items/banana.png', ("μήλο", "μηλαράκι"):'items/apple.png'}
+                    random_item = {("αρκούδα", "αρκουδάκι", "αρκουδίτσα", "καφέ"):'items/bear.png',
+                    ("γουρούνι", "γουρουνάκι"):'items/pig.png', ("ποντίκι", "ποντικάκι", "αρουραίος", "χάμστερ"):'items/mouse.png',
+                    ("ψάρι", "ψαράκι"):'items/fish.png', ("σκυλί", "σκύλος", "σκυλάκι"):'items/dog.png',
+                    ("ελάφι", "ελαφάκι"):'items/deer.gif', ("γάτα", "γατούλα", "γατάκι", "γατίτσα"):'items/cat.png',
+                    ("πουλί", "περιστέρι", "περιστεράκι", "πουλάκι"):'items/bird.png', ("ανανάς", "ανανά"):'items/pineapple.png',
+                    ("πορτοκάλι", "πορτοκαλάκι"):'items/orange.png', ("λεμόνι", "λεμονάκι"):'items/lemon.png',
+                    ("κεράσι", "κερασάκι", "κεράσια", "κερασάκια"):'items/cherry.png', ("μπανάνα", "μπανανίτσα", "μπανανούλα"):'items/banana.png',
+                    ("μήλο", "μηλαράκι"):'items/apple.png'}
                     random_item_key, random_item_value = random.choice(list(random_item.items()))
                     print(random_item_key)
                     self.rand_item_key = random_item_key
