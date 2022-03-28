@@ -120,8 +120,8 @@ class ItemGame(Screen):
                     ("ψάρι", "ψαράκι"):'items/fish.png', ("σκυλί", "σκύλος", "σκυλάκι"):'items/dog.png',
                     ("ελάφι", "ελαφάκι"):'items/deer.gif', ("γάτα", "γατούλα", "γατάκι", "γατίτσα"):'items/cat.png',
                     ("πουλί", "περιστέρι", "περιστεράκι", "πουλάκι"):'items/bird.png', ("ανανάς", "ανανά"):'items/pineapple.png',
-                    ("πορτοκάλι", "πορτοκαλάκι"):'items/orange.png', ("λεμόνι", "λεμονάκι"):'items/lemon.png',
-                    ("κεράσι", "κερασάκι", "κεράσια", "κερασάκια"):'items/cherry.png', ("μπανάνα", "μπανανίτσα", "μπανανούλα"):'items/banana.png',
+                    ("πορτοκάλι", "πορτοκαλάκη", "πορτοκαλάκι"):'items/orange.png', ("λεμόνι", "λεμονάκι"):'items/lemon.png',
+                    ("κεράσι", "κερασάκι", "κεράσια", "κερασάκια"):'items/cherry.png', ("μπανάνα", "banana", "μπανανίτσα", "μπανανούλα"):'items/banana.png',
                     ("μήλο", "μηλαράκι"):'items/apple.png'}
                     random_item_key, random_item_value = random.choice(list(random_item.items()))
                     print(random_item_key)
@@ -169,11 +169,117 @@ class ItemGame(Screen):
         Clock.schedule_once(callback_on_item)
         Clock.schedule_interval(callback_on_item, 10)
 
-class LetterGame(Screen):
-    pass
-
 class NumberGame(Screen):
-    pass
+    rand_number = StringProperty()
+    count1 = 0
+    count2 = 0
+
+    def on_pre_enter(self, *args):        
+        def callback_pre_number(dt):
+            if NumberGame.count1 < 5:
+                if NumberGame.count1 < 5:
+                    Command.say("Τι είναι?")
+                    random_number = {}
+                    random_number_key, random_number_value = random.choice(list(random_number.items()))
+                    print(random_number_key)
+                    self.rand_number_key = random_number_key
+                    self.rand_number = random_number_value
+                    NumberGame.count1 += 1
+                    return NumberGame.count1
+                elif NumberGame.count1 >= 5:
+                    pass
+            elif NumberGame.count1 >=5:
+                Clock.unschedule(callback_pre_number)
+                NumberGame.count1 = 0
+                return NumberGame.count1
+
+        Clock.schedule_once(callback_pre_number)
+        Clock.schedule_interval(callback_pre_number, 10)
+
+        
+    def on_enter(self, *args):
+        def callback_on_number(dt):
+            if NumberGame.count2 < 5:
+                if NumberGame.count2 < 5:
+                    input = Command.audioIn().lower().split(' ')
+                    if Command.user_said == None:
+                        NumberGame.count2 += 1
+                        return NumberGame.count2
+                    elif any(word in input for word in self.rand_number_key):
+                        Command.say("πολύ σωστά!")
+                        NumberGame.count2 += 1
+                        return NumberGame.count2
+                    elif Command.bad_read == False:
+                        Command.say("Λάθος!")
+                        NumberGame.count2 += 1
+                        return NumberGame.count2
+                    else:
+                        NumberGame.count2 += 1
+                        return NumberGame.count2
+            elif NumberGame.count2 >=5:
+                Clock.unschedule(callback_on_number)
+                NumberGame.count2 = 0
+                Command.say(f"Μπράβο {Command.user_name}!")
+                return NumberGame.count2
+
+        Clock.schedule_once(callback_on_number)
+        Clock.schedule_interval(callback_on_number, 10)
+
+class LetterGame(Screen):
+    rand_letter = StringProperty()
+    count1 = 0
+    count2 = 0
+
+    def on_pre_enter(self, *args):        
+        def callback_pre_letter(dt):
+            if LetterGame.count1 < 5:
+                if LetterGame.count1 < 5:
+                    Command.say("Τι είναι?")
+                    random_letter = {}
+                    random_letter_key, random_letter_value = random.choice(list(random_letter.items()))
+                    print(random_letter_key)
+                    self.rand_letter_key = random_letter_key
+                    self.rand_letter = random_letter_value
+                    LetterGame.count1 += 1
+                    return LetterGame.count1
+                elif LetterGame.count1 >= 5:
+                    pass
+            elif LetterGame.count1 >=5:
+                Clock.unschedule(callback_pre_letter)
+                LetterGame.count1 = 0
+                return LetterGame.count1
+
+        Clock.schedule_once(callback_pre_letter)
+        Clock.schedule_interval(callback_pre_letter, 10)
+
+        
+    def on_enter(self, *args):
+        def callback_on_letter(dt):
+            if LetterGame.count2 < 5:
+                if LetterGame.count2 < 5:
+                    input = Command.audioIn().lower().split(' ')
+                    if Command.user_said == None:
+                        LetterGame.count2 += 1
+                        return LetterGame.count2
+                    elif any(word in input for word in self.rand_letter_key):
+                        Command.say("πολύ σωστά!")
+                        LetterGame.count2 += 1
+                        return LetterGame.count2
+                    elif Command.bad_read == False:
+                        Command.say("Λάθος!")
+                        LetterGame.count2 += 1
+                        return LetterGame.count2
+                    else:
+                        LetterGame.count2 += 1
+                        return LetterGame.count2
+            elif LetterGame.count2 >=5:
+                Clock.unschedule(callback_on_letter)
+                LetterGame.count2 = 0
+                Command.say(f"Μπράβο {Command.user_name}!")
+                return LetterGame.count2
+
+        Clock.schedule_once(callback_on_letter)
+        Clock.schedule_interval(callback_on_letter, 10)
 
 class WindowManager(ScreenManager):
     pass
