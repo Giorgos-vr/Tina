@@ -76,7 +76,7 @@ class ShapeGame(Screen):
                     pass
             elif ShapeGame.count1 >=5:      #cancel callback once max reps is reached
                 Clock.unschedule(callback_pre_image)
-                ShapeGame.count1 = 0
+                ShapeGame.count1 = 0 #reset counter
                 return ShapeGame.count1
 
         Clock.schedule_once(callback_pre_image) #schedule callback
@@ -108,7 +108,7 @@ class ShapeGame(Screen):
                         return ShapeGame.count2
             elif ShapeGame.count2 >=5:
                 Clock.unschedule(callback_on_image)
-                ShapeGame.count2 = 0
+                ShapeGame.count2 = 0 #reset counter
                 Command.say(f"Μπράβο {Command.user_name}!")
                 return ShapeGame.count2
 
