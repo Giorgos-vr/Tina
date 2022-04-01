@@ -35,15 +35,11 @@ class MenuWindow(Screen):
 
         return MenuWindow.once #intro counter doesn't reset
 
-
-                
-        
-
 class ShapeGame(Screen):
     rand_shape = StringProperty()
     # These counters control the amount of repetitions of question dialogues and must be consistent
     # with one another.
-    count1 = 0 #count1 is for image selection (pre_enter)
+    count1 = 0 #count1 is for image selection (on_pre_enter)
     count2 = 0 #count2 is for user responce (on_enter)
     #note2self it may be possible to combine these 2 counters into one but I'm not sure how, more testing needed.
 
@@ -109,7 +105,7 @@ class ShapeGame(Screen):
             elif ShapeGame.count2 >=5:
                 Clock.unschedule(callback_on_image)
                 ShapeGame.count2 = 0 #reset counter
-                Command.say(f"Μπράβο {Command.user_name}!")
+                Command.say(f"Μπράβο {Command.user_name}!") #"well done" confirms loop completion
                 return ShapeGame.count2
 
         Clock.schedule_once(callback_on_image)
