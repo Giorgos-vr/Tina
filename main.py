@@ -11,7 +11,7 @@ class IntroWindow(Screen):
     pass
 
 class MenuWindow(Screen):
-    once = False
+    once = False #intro dialogue is only meant to play once
     def on_enter(self, *args):
         while MenuWindow.once == False:
             Command.start()
@@ -23,17 +23,17 @@ class MenuWindow(Screen):
                 elif Command.sel == "items":
                     self.parent.current = "items"
                     MenuWindow.once = True
-                elif Command.sel == "letters":
-                    self.parent.current = "letters"
-                    MenuWindow.once = True
                 elif Command.sel == "numbers":
                     self.parent.current = "numbers"
+                    MenuWindow.once = True
+                elif Command.sel == "letters":
+                    self.parent.current = "letters"
                     MenuWindow.once = True
                 else:
                     MenuWindow.once = True
             
 
-        return MenuWindow.once
+        return MenuWindow.once #intro counter doesn't reset
 
 
                 
@@ -41,14 +41,19 @@ class MenuWindow(Screen):
 
 class ShapeGame(Screen):
     rand_shape = StringProperty()
-    count1 = 0
-    count2 = 0
+    # These counters control the amount of repetitions of question dialogues and must be consistent
+    # with one another.
+    count1 = 0 #count1 is for image selection (pre_enter)
+    count2 = 0 #count2 is for user responce (on_enter)
+    #note2self it may be possible to combine these 2 counters into one but I'm not sure how, more testing needed.
 
     def on_pre_enter(self, *args):        
         def callback_pre_image(dt):
             if ShapeGame.count1 < 5:
                 if ShapeGame.count1 < 5:
                     Command.say("Τι είναι?")
+                    #here's the brilliant part!
+                    #acceptable answers and image paths are stored as dict key:value pairs.
                     random_shape = {('μαύρο', 'άδειο', 'σκοτεινό'):'shapes/black.png',
                         ('μπλε', 'γαλάζιο', 'γαλανό'):'shapes/blue.png', ("πράσινο", "πρασινάκι"):'shapes/green.png',
                         ("ροζ", "κόκκινο"):'shapes/pink.png', ("μωβ", "φούξια"):'shapes/purple.png',
@@ -59,37 +64,43 @@ class ShapeGame(Screen):
                         ("ορθογώνιο", "παραλληλόγραμμο"):'shapes/rectangle.png', ("οβάλ", "στεφάνι"):'shapes/oval.png',
                         ("αστέρι", "αστεράκι", "άστρο"):'shapes/star.png', ("τετράγωνο", "τετραγωνάκι"):'shapes/square.png',
                         ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
+                    #answer:image dict item is picked at random
                     random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
-                    print(random_shape_key)
+                    print(random_shape_key) #key is printed for debugging purposes
                     self.rand_shape_key = random_shape_key
-                    self.rand_shape = random_shape_value
-                    ShapeGame.count1 += 1
-                    return ShapeGame.count1
-                elif ShapeGame.count1 >= 5:
+                    self.rand_shape = random_shape_value #value is assigned to instance to be used by .kv
+                                                         #and allow kivy to display the image
+                    ShapeGame.count1 += 1   #update
+                    return ShapeGame.count1 #and return counter
+                elif ShapeGame.count1 >= 5: #this is probably pointless
                     pass
-            elif ShapeGame.count1 >=5:
+            elif ShapeGame.count1 >=5:      #cancel callback once max reps is reached
                 Clock.unschedule(callback_pre_image)
                 ShapeGame.count1 = 0
                 return ShapeGame.count1
 
-        Clock.schedule_once(callback_pre_image)
-        Clock.schedule_interval(callback_pre_image, 10)
+        Clock.schedule_once(callback_pre_image) #schedule callback
+        Clock.schedule_interval(callback_pre_image, 10) #setup interval (10 seconds in this case)
 
         
     def on_enter(self, *args):
         def callback_on_image(dt):
             if ShapeGame.count2 < 5:
                 if ShapeGame.count2 < 5:
+                    #on_enter the user responce is captured, broken down into individual words
+                    #and these words are placed in a list with a space separator
                     input = Command.audioIn().lower().split(' ')
                     if Command.user_said == None:
                         ShapeGame.count2 += 1
                         return ShapeGame.count2
+                    #and here's the other brilliant part, the user responce list gets compared
+                    #with the accepted responces list found in the dict key list previously randomly selected
                     elif any(word in input for word in self.rand_shape_key):
-                        Command.say("πολύ σωστά!")
+                        Command.say("πολύ σωστά!")#if correct
                         ShapeGame.count2 += 1
                         return ShapeGame.count2
                     elif Command.bad_read == False:
-                        Command.say("Λάθος!")
+                        Command.say("Λάθος!")#if wrong (and not a bad read)
                         ShapeGame.count2 += 1
                         return ShapeGame.count2
                     else:
