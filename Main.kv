@@ -164,13 +164,15 @@ WindowManager:
 
 <LetterGame>:
     name: "letters"
+    id: LetterGame
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height
-        Label:
-            id:"letters"
-            text: "letters Game"
-            font_size: 34
+        Image:
+            id:"letter"
+            screen: LetterGame
+            source: root.rand_letter
+            before_source: self.source
         BoxLayout:
             size_hint: 1.0, 0.2
             size: root.width, root.height

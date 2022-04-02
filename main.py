@@ -65,7 +65,7 @@ class ShapeGame(Screen):
                     print(random_shape_key) #key is printed for debugging purposes
                     self.rand_shape_key = random_shape_key
                     self.rand_shape = random_shape_value #value is assigned to instance to be used by .kv
-                                                         #and allow kivy to display the image
+                                                         #and allow kivy to display the correct image
                     ShapeGame.count1 += 1   #update
                     return ShapeGame.count1 #and return counter
                 elif ShapeGame.count1 >= 5: #this is probably pointless
@@ -242,19 +242,26 @@ class LetterGame(Screen):
 
     def on_pre_enter(self, *args):        
         def callback_pre_letter(dt):
-            if LetterGame.count1 < 5:
-                if LetterGame.count1 < 5:
+            if LetterGame.count1 < 10:
+                if LetterGame.count1 < 10:
                     Command.say("Τι είναι?")
-                    random_letter = {}
+                    random_letter = {("άλφα", "alpha", "Α", "A", "a", "α"):'letters/alpha.png', ("β", "Β", "B", "b", "βήτα", "βλίτα", "beta"):'letters/betta.png',
+                    ("γάμμα", "Γ", "γ", "γράμμα", "gamma"):'letters/Gamma.png', ("δέλτα", "δ", "Δ", "delta"):'letters/delta.png', ("έψιλον", "ε", "Ε", "ύψιλον", "epsilon", "υ", "Υ"):'letters/epsilon.png',
+                    ("ζήτα", "Ζ", "ζ", "ζητά", "zeta"):'letters/zeta.png', ("ήτα", "ήττα", "η", "Η", "θήτα", "eta"):'letters/eta.png', ("θήτα", "ήτα", "Θ", "θ", "ήττα", "theta"):'letters/theta.png',
+                    ("Γιώτα", "γιώτα", "Ι", "ι", "iota"):'letters/Iota.png', ("κάπα", "Κ", "κ", "κάππα", "kappa"):'letters/kappa.png', ("λάμδα", "λ", "Λ", "lambda"):'letters/lambda.png',
+                    ("μη", "Μ", "μ", "μι", "mu"):'letters/mu.png', ("Ν", "ν", "νι"):'letters/ni.png', ("ξ", "Ξ", "ξι", "ξί"):'letters/xi.png',
+                    ("Ο", "ο", "όμικρον"):'letters/omicron.png', ("Π", "π", "πι"):'letters/pi.png', ("Ρ", "ρ", "ρω", "ρο"):'letters/rho.png',
+                    ("Σ", "σ", "σίγμα", "στίγμα"):'letters/sigma.png', ("Τ", "τ", "ταφ", "ταυ", "ταύ"):'letters/tau.png', ("Υ", "υ", "ύψιλον", "έψιλον", "Ε", "ε"):'letters/upsilon.png',
+                    ("Φ", "φ", "φι"):'letters/phi.png', ("Χ", "χ", "χι"):'letters/xi.png', ("Ψ", "ψ", "ψι"):'letters/Psi.png', ("Ω", "ω", "ωμέγα"):'letters/omega.png'}
                     random_letter_key, random_letter_value = random.choice(list(random_letter.items()))
                     print(random_letter_key)
                     self.rand_letter_key = random_letter_key
                     self.rand_letter = random_letter_value
                     LetterGame.count1 += 1
                     return LetterGame.count1
-                elif LetterGame.count1 >= 5:
+                elif LetterGame.count1 >= 10:
                     pass
-            elif LetterGame.count1 >=5:
+            elif LetterGame.count1 >=10:
                 Clock.unschedule(callback_pre_letter)
                 LetterGame.count1 = 0
                 return LetterGame.count1
@@ -265,8 +272,8 @@ class LetterGame(Screen):
         
     def on_enter(self, *args):
         def callback_on_letter(dt):
-            if LetterGame.count2 < 5:
-                if LetterGame.count2 < 5:
+            if LetterGame.count2 < 10:
+                if LetterGame.count2 < 10:
                     input = Command.audioIn().lower().split(' ')
                     if Command.user_said == None:
                         LetterGame.count2 += 1
@@ -282,7 +289,7 @@ class LetterGame(Screen):
                     else:
                         LetterGame.count2 += 1
                         return LetterGame.count2
-            elif LetterGame.count2 >=5:
+            elif LetterGame.count2 >=10:
                 Clock.unschedule(callback_on_letter)
                 LetterGame.count2 = 0
                 Command.say(f"Μπράβο {Command.user_name}!")
