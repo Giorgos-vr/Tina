@@ -19,20 +19,13 @@ class MenuWindow(Screen):
             while MenuWindow.once == False:
                 if Command.sel == "shapes":
                     self.parent.current = "shapes"
-                    MenuWindow.once = True
                 elif Command.sel == "items":
                     self.parent.current = "items"
-                    MenuWindow.once = True
                 elif Command.sel == "numbers":
                     self.parent.current = "numbers"
-                    MenuWindow.once = True
                 elif Command.sel == "letters":
                     self.parent.current = "letters"
-                    MenuWindow.once = True
-                else:
-                    MenuWindow.once = True
-            
-
+                MenuWindow.once = True
         return MenuWindow.once #intro counter doesn't reset
 
 class ShapeGame(Screen):
@@ -82,31 +75,21 @@ class ShapeGame(Screen):
     def on_enter(self, *args):
         def callback_on_image(dt):
             if ShapeGame.count2 < 5:
-                if ShapeGame.count2 < 5:
-                    #on_enter the user responce is captured, broken down into individual words
-                    #and these words are placed in a list with a space separator
-                    input = Command.audioIn().lower().split(' ')
-                    if Command.user_said == None:
-                        ShapeGame.count2 += 1
-                        return ShapeGame.count2
-                    #and here's the other brilliant part, the user responce list gets compared
-                    #with the accepted responces list found in the dict key list previously randomly selected
-                    elif any(word in input for word in self.rand_shape_key):
-                        Command.say("πολύ σωστά!")#if correct
-                        ShapeGame.count2 += 1
-                        return ShapeGame.count2
-                    elif Command.bad_read == False:
-                        Command.say("Λάθος!")#if wrong (and not a bad read)
-                        ShapeGame.count2 += 1
-                        return ShapeGame.count2
-                    else:
-                        ShapeGame.count2 += 1
-                        return ShapeGame.count2
-            elif ShapeGame.count2 >=5:
+                #on_enter the user responce is captured, broken down into individual words
+                #and these words are placed in a list with a space separator
+                input = Command.audioIn().lower().split(' ')
+                if Command.user_said is None:
+                    pass
+                elif any(word in input for word in self.rand_shape_key):
+                    Command.say("πολύ σωστά!")#if correct
+                elif Command.bad_read == False:
+                    Command.say("Λάθος!")#if wrong (and not a bad read)
+                ShapeGame.count2 += 1
+            else:
                 Clock.unschedule(callback_on_image)
                 ShapeGame.count2 = 0 #reset counter
                 Command.say(f"Μπράβο {Command.user_name}!") #"well done" confirms loop completion
-                return ShapeGame.count2
+            return ShapeGame.count2
 
         Clock.schedule_once(callback_on_image)
         Clock.schedule_interval(callback_on_image, 10)
@@ -150,28 +133,20 @@ class ItemGame(Screen):
     def on_enter(self, *args):
         def callback_on_item(dt):
             if ItemGame.count2 < 10:
-                if ItemGame.count2 < 10:
-                    input = Command.audioIn()
-                    select = input.lower().split(' ')
-                    if Command.user_said == None:
-                        ItemGame.count2 += 1
-                        return ItemGame.count2
-                    elif any(word in select for word in self.rand_item_key):
-                        Command.say("πολύ σωστά!")
-                        ItemGame.count2 += 1
-                        return ItemGame.count2
-                    elif Command.bad_read == False:
-                        Command.say("Λάθος!")
-                        ItemGame.count2 += 1
-                        return ItemGame.count2
-                    else:
-                        ItemGame.count2 += 1
-                        return ItemGame.count2
-            elif ItemGame.count2 >=10:
+                input = Command.audioIn()
+                select = input.lower().split(' ')
+                if Command.user_said is None:
+                    pass
+                elif any(word in select for word in self.rand_item_key):
+                    Command.say("πολύ σωστά!")
+                elif Command.bad_read == False:
+                    Command.say("Λάθος!")
+                ItemGame.count2 += 1
+            else:
                 Clock.unschedule(callback_on_item)
                 ItemGame.count2 = 0
                 Command.say(f"Μπράβο {Command.user_name}!")
-                return ItemGame.count2
+            return ItemGame.count2
 
         Clock.schedule_once(callback_on_item)
         Clock.schedule_interval(callback_on_item, 10)
@@ -184,24 +159,20 @@ class NumberGame(Screen):
     def on_pre_enter(self, *args):        
         def callback_pre_number(dt):
             if NumberGame.count1 < 5:
-                if NumberGame.count1 < 5:
-                    Command.say("Τι είναι?")
-                    random_number = {("μηδενικό", "zero", "0"):'numbers/0.png', ("1", "άσσος"):'numbers/1.png',
-                    ("2", "δύο", "διπλό", "δυάρι"):'numbers/2.png', ("3", "τριάρι", "τριπλό"):'numbers/3.png', ("4", "τεσσάρι", "τετραπλό"):'numbers/4.png',
-                    ("5", "πεντάρι", "πενταπλό"):'numbers/5.png', ("6", "εξάρι", "εξαπλό"):'numbers/6.png',
-                    ("7", "επτά", "εφτάρι", "7άρι"):'numbers/7.png', ("8", "οκτώ", "οχτώ", "8άρι"):'numbers/8.png', ("9", "εννιά", "εννιάρι", "εννέα"):'numbers/9.png'}
-                    random_number_key, random_number_value = random.choice(list(random_number.items()))
-                    print(random_number_key)
-                    self.rand_number_key = random_number_key
-                    self.rand_number = random_number_value
-                    NumberGame.count1 += 1
-                    return NumberGame.count1
-                elif NumberGame.count1 >= 5:
-                    pass
-            elif NumberGame.count1 >=5:
+                Command.say("Τι είναι?")
+                random_number = {("μηδενικό", "zero", "0"):'numbers/0.png', ("1", "άσσος"):'numbers/1.png',
+                ("2", "δύο", "διπλό", "δυάρι"):'numbers/2.png', ("3", "τριάρι", "τριπλό"):'numbers/3.png', ("4", "τεσσάρι", "τετραπλό"):'numbers/4.png',
+                ("5", "πεντάρι", "πενταπλό"):'numbers/5.png', ("6", "εξάρι", "εξαπλό"):'numbers/6.png',
+                ("7", "επτά", "εφτάρι", "7άρι"):'numbers/7.png', ("8", "οκτώ", "οχτώ", "8άρι"):'numbers/8.png', ("9", "εννιά", "εννιάρι", "εννέα"):'numbers/9.png'}
+                random_number_key, random_number_value = random.choice(list(random_number.items()))
+                print(random_number_key)
+                self.rand_number_key = random_number_key
+                self.rand_number = random_number_value
+                NumberGame.count1 += 1
+            else:
                 Clock.unschedule(callback_pre_number)
                 NumberGame.count1 = 0
-                return NumberGame.count1
+            return NumberGame.count1
 
         Clock.schedule_once(callback_pre_number)
         Clock.schedule_interval(callback_pre_number, 10)
@@ -210,27 +181,19 @@ class NumberGame(Screen):
     def on_enter(self, *args):
         def callback_on_number(dt):
             if NumberGame.count2 < 5:
-                if NumberGame.count2 < 5:
-                    input = Command.audioIn().lower().split(' ')
-                    if Command.user_said == None:
-                        NumberGame.count2 += 1
-                        return NumberGame.count2
-                    elif any(word in input for word in self.rand_number_key):
-                        Command.say("πολύ σωστά!")
-                        NumberGame.count2 += 1
-                        return NumberGame.count2
-                    elif Command.bad_read == False:
-                        Command.say("Λάθος!")
-                        NumberGame.count2 += 1
-                        return NumberGame.count2
-                    else:
-                        NumberGame.count2 += 1
-                        return NumberGame.count2
-            elif NumberGame.count2 >=5:
+                input = Command.audioIn().lower().split(' ')
+                if Command.user_said is None:
+                    pass
+                elif any(word in input for word in self.rand_number_key):
+                    Command.say("πολύ σωστά!")
+                elif Command.bad_read == False:
+                    Command.say("Λάθος!")
+                NumberGame.count2 += 1
+            else:
                 Clock.unschedule(callback_on_number)
                 NumberGame.count2 = 0
                 Command.say(f"Μπράβο {Command.user_name}!")
-                return NumberGame.count2
+            return NumberGame.count2
 
         Clock.schedule_once(callback_on_number)
         Clock.schedule_interval(callback_on_number, 10)
@@ -243,28 +206,24 @@ class LetterGame(Screen):
     def on_pre_enter(self, *args):        
         def callback_pre_letter(dt):
             if LetterGame.count1 < 10:
-                if LetterGame.count1 < 10:
-                    Command.say("Τι είναι?")
-                    random_letter = {("άλφα", "alpha", "Α", "A", "a", "α"):'letters/alpha.png', ("β", "Β", "B", "b", "βήτα", "βλίτα", "beta"):'letters/betta.png',
-                    ("γάμμα", "Γ", "γ", "γράμμα", "gamma"):'letters/Gamma.png', ("δέλτα", "δ", "Δ", "delta"):'letters/delta.png', ("έψιλον", "ε", "Ε", "ύψιλον", "epsilon", "υ", "Υ"):'letters/epsilon.png',
-                    ("ζήτα", "Ζ", "ζ", "ζητά", "zeta"):'letters/zeta.png', ("ήτα", "ήττα", "η", "Η", "θήτα", "eta"):'letters/eta.png', ("θήτα", "ήτα", "Θ", "θ", "ήττα", "theta"):'letters/theta.png',
-                    ("Γιώτα", "γιώτα", "Ι", "ι", "iota"):'letters/Iota.png', ("κάπα", "Κ", "κ", "κάππα", "kappa"):'letters/kappa.png', ("λάμδα", "λ", "Λ", "lambda"):'letters/lambda.png',
-                    ("μη", "Μ", "μ", "μι", "mu"):'letters/mu.png', ("Ν", "ν", "νι"):'letters/ni.png', ("ξ", "Ξ", "ξι", "ξί"):'letters/xi.png',
-                    ("Ο", "ο", "όμικρον"):'letters/omicron.png', ("Π", "π", "πι"):'letters/pi.png', ("Ρ", "ρ", "ρω", "ρο"):'letters/rho.png',
-                    ("Σ", "σ", "σίγμα", "στίγμα"):'letters/sigma.png', ("Τ", "τ", "ταφ", "ταυ", "ταύ"):'letters/tau.png', ("Υ", "υ", "ύψιλον", "έψιλον", "Ε", "ε"):'letters/upsilon.png',
-                    ("Φ", "φ", "φι"):'letters/phi.png', ("Χ", "χ", "χι"):'letters/xi.png', ("Ψ", "ψ", "ψι"):'letters/Psi.png', ("Ω", "ω", "ωμέγα"):'letters/omega.png'}
-                    random_letter_key, random_letter_value = random.choice(list(random_letter.items()))
-                    print(random_letter_key)
-                    self.rand_letter_key = random_letter_key
-                    self.rand_letter = random_letter_value
-                    LetterGame.count1 += 1
-                    return LetterGame.count1
-                elif LetterGame.count1 >= 10:
-                    pass
-            elif LetterGame.count1 >=10:
+                Command.say("Τι είναι?")
+                random_letter = {("άλφα", "alpha", "Α", "A", "a", "α"):'letters/alpha.png', ("β", "Β", "B", "b", "βήτα", "βλίτα", "beta"):'letters/betta.png',
+                ("γάμμα", "Γ", "γ", "γράμμα", "gamma"):'letters/Gamma.png', ("δέλτα", "δ", "Δ", "delta"):'letters/delta.png', ("έψιλον", "ε", "Ε", "ύψιλον", "epsilon", "υ", "Υ"):'letters/epsilon.png',
+                ("ζήτα", "Ζ", "ζ", "ζητά", "zeta"):'letters/zeta.png', ("ήτα", "ήττα", "η", "Η", "θήτα", "eta"):'letters/eta.png', ("θήτα", "ήτα", "Θ", "θ", "ήττα", "theta"):'letters/theta.png',
+                ("Γιώτα", "γιώτα", "Ι", "ι", "iota"):'letters/Iota.png', ("κάπα", "Κ", "κ", "κάππα", "kappa"):'letters/kappa.png', ("λάμδα", "λ", "Λ", "lambda"):'letters/lambda.png',
+                ("μη", "Μ", "μ", "μι", "mu"):'letters/mu.png', ("Ν", "ν", "νι"):'letters/ni.png', ("ξ", "c", "C", "Ξ", "ξι", "ξί"):'letters/xi.png',
+                ("Ο", "ο", "όμικρον"):'letters/omicron.png', ("Π", "Φ", "φ", "π", "πι"):'letters/pi.png', ("Ρ", "ρ", "ρω", "ρο"):'letters/rho.png',
+                ("Σ", "σ", "σίγμα", "ς", "στίγμα"):'letters/sigma.png', ("Τ", "τ", "ταφ", "ταυ", "ταύ"):'letters/tau.png', ("Υ", "υ", "ύψιλον", "έψιλον", "Ε", "ε"):'letters/upsilon.png',
+                ("Φ", "φ", "φι", "π", "Π"):'letters/phi.png', ("Χ", "χ", "χι"):'letters/xi.png', ("Ψ", "ψ", "ψι"):'letters/Psi.png', ("Ω", "ω", "ωμέγα"):'letters/omega.png'}
+                random_letter_key, random_letter_value = random.choice(list(random_letter.items()))
+                print(random_letter_key)
+                self.rand_letter_key = random_letter_key
+                self.rand_letter = random_letter_value
+                LetterGame.count1 += 1
+            else:
                 Clock.unschedule(callback_pre_letter)
                 LetterGame.count1 = 0
-                return LetterGame.count1
+            return LetterGame.count1
 
         Clock.schedule_once(callback_pre_letter)
         Clock.schedule_interval(callback_pre_letter, 10)
@@ -273,27 +232,19 @@ class LetterGame(Screen):
     def on_enter(self, *args):
         def callback_on_letter(dt):
             if LetterGame.count2 < 10:
-                if LetterGame.count2 < 10:
-                    input = Command.audioIn().lower().split(' ')
-                    if Command.user_said == None:
-                        LetterGame.count2 += 1
-                        return LetterGame.count2
-                    elif any(word in input for word in self.rand_letter_key):
-                        Command.say("πολύ σωστά!")
-                        LetterGame.count2 += 1
-                        return LetterGame.count2
-                    elif Command.bad_read == False:
-                        Command.say("Λάθος!")
-                        LetterGame.count2 += 1
-                        return LetterGame.count2
-                    else:
-                        LetterGame.count2 += 1
-                        return LetterGame.count2
-            elif LetterGame.count2 >=10:
+                input = Command.audioIn().lower().split(' ')
+                if Command.user_said is None:
+                    pass
+                elif any(word in input for word in self.rand_letter_key):
+                    Command.say("πολύ σωστά!")
+                elif Command.bad_read == False:
+                    Command.say("Λάθος!")
+                LetterGame.count2 += 1
+            else:
                 Clock.unschedule(callback_on_letter)
                 LetterGame.count2 = 0
                 Command.say(f"Μπράβο {Command.user_name}!")
-                return LetterGame.count2
+            return LetterGame.count2
 
         Clock.schedule_once(callback_on_letter)
         Clock.schedule_interval(callback_on_letter, 10)
