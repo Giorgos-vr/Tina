@@ -38,14 +38,16 @@ WindowManager:
         
 <MenuWindow>:
     name: "menu"
+    id: MenuWindow
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height
 
-        Label:
+        Image:
             id:"menu"
-            text: "Menu Screen"
-            font_size: 34
+            screen: MenuWindow
+            source: root.tina
+            before_source: self.source
             
         BoxLayout:
             size_hint: 1.0, 0.2

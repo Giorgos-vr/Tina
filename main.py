@@ -11,6 +11,7 @@ class IntroWindow(Screen):
     pass
 
 class MenuWindow(Screen):
+    tina = 'menu/tina.png'
     once = False #intro dialogue is only meant to play once
     def on_enter(self, *args):
         while MenuWindow.once == False:
@@ -162,7 +163,7 @@ class NumberGame(Screen):
                 Command.say("Τι είναι?")
                 random_number = {("μηδενικό", "zero", "0"):'numbers/0.png', ("1", "άσσος"):'numbers/1.png',
                 ("2", "δύο", "διπλό", "δυάρι"):'numbers/2.png', ("3", "τριάρι", "τριπλό"):'numbers/3.png', ("4", "τεσσάρι", "τετραπλό"):'numbers/4.png',
-                ("5", "πεντάρι", "πενταπλό"):'numbers/5.png', ("6", "εξάρι", "εξαπλό"):'numbers/6.png',
+                ("5", "πεντάρι", "πέντε", "πενταπλό"):'numbers/5.png', ("6", "εξάρι", "εξαπλό"):'numbers/6.png',
                 ("7", "επτά", "εφτάρι", "7άρι"):'numbers/7.png', ("8", "οκτώ", "οχτώ", "8άρι"):'numbers/8.png', ("9", "εννιά", "εννιάρι", "εννέα"):'numbers/9.png'}
                 random_number_key, random_number_value = random.choice(list(random_number.items()))
                 print(random_number_key)
