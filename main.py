@@ -56,7 +56,7 @@ class ShapeGame(Screen):
                         ("τρίγωνο", "τριγωνάκι"):'shapes/triangle.png', ("κύκλος", "στρογγυλό", "κυκλάκι"):'shapes/circle.png'}
                     #answer:image dict item is picked at random
                     random_shape_key, random_shape_value = random.choice(list(random_shape.items()))
-                    print(random_shape_key) #key is printed for debugging purposes
+                    #print(random_shape_key) #key is printed for debugging purposes
                     self.rand_shape_key = random_shape_key
                     self.rand_shape = random_shape_value #value is assigned to instance to be used by .kv
                                                          #and allow kivy to display the correct image
@@ -115,7 +115,7 @@ class ItemGame(Screen):
                     ("κεράσι", "κερασάκι", "κεράσια", "κερασάκια"):'items/cherry.png', ("μπανάνα", "banana", "μπανανίτσα", "μπανανούλα"):'items/banana.png',
                     ("μήλο", "μηλαράκι"):'items/apple.png'}
                     random_item_key, random_item_value = random.choice(list(random_item.items()))
-                    print(random_item_key)
+                    #print(random_item_key)
                     self.rand_item_key = random_item_key
                     self.rand_item = random_item_value
                     ItemGame.count1 += 1
@@ -166,7 +166,7 @@ class NumberGame(Screen):
                 ("5", "πεντάρι", "πέντε", "πενταπλό"):'numbers/5.png', ("6", "εξάρι", "εξαπλό"):'numbers/6.png',
                 ("7", "επτά", "εφτάρι", "7άρι"):'numbers/7.png', ("8", "οκτώ", "οχτώ", "8άρι"):'numbers/8.png', ("9", "εννιά", "εννιάρι", "εννέα"):'numbers/9.png'}
                 random_number_key, random_number_value = random.choice(list(random_number.items()))
-                print(random_number_key)
+                #print(random_number_key)
                 self.rand_number_key = random_number_key
                 self.rand_number = random_number_value
                 NumberGame.count1 += 1
@@ -217,7 +217,7 @@ class LetterGame(Screen):
                 ("Σ", "σ", "σίγμα", "ς", "στίγμα"):'letters/sigma.png', ("Τ", "τ", "ταφ", "ταυ", "ταύ"):'letters/tau.png', ("Υ", "υ", "ύψιλον", "έψιλον", "Ε", "ε"):'letters/upsilon.png',
                 ("Φ", "φ", "φι", "π", "Π"):'letters/phi.png', ("Χ", "χ", "χι"):'letters/xi.png', ("Ψ", "ψ", "ψι"):'letters/Psi.png', ("Ω", "ω", "ωμέγα"):'letters/omega.png'}
                 random_letter_key, random_letter_value = random.choice(list(random_letter.items()))
-                print(random_letter_key)
+                #print(random_letter_key)
                 self.rand_letter_key = random_letter_key
                 self.rand_letter = random_letter_value
                 LetterGame.count1 += 1
