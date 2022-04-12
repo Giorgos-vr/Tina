@@ -1,0 +1,191 @@
+#:kivy 2.0
+WindowManager:
+    IntroWindow:
+    MenuWindow:
+    ShapeGame:
+    ItemGame:
+    NumberGame:
+    LetterGame:
+
+
+<IntroWindow>:
+    name: "Intro"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            Label:
+                id:"intro"
+                size_hint_y: None
+                height: self.texture_size[1]
+                text_size: self.width, None
+                padding: 10, 10
+                font_size: 24
+                text:
+                    "Αγαπητοί γονείς σας ευχαριστώ πολύ που σταθήκατε και δεχτήκατε να δοκιμάσετε την εφαρμογή Tina.\n\nΗ εφαρμογή αυτή έχει ως κύριο στόχο να βοηθήσει τα παιδιά ηλικιών 2 ως 5 να εξασκήσουν την ομιλία τους εκμεταλλευόμενα τις λειτουργίες αναγνώρισης φωνής του Google.\n\nΗ εφαρμογή αυτή έχει τρεις βασικές οθόνες.\n\n1. Η πρώτη είναι η εισαγωγική οθόνη η οποία παρουσιάζει τη λειτουργία της εφαρμογής και εμφανίζεται **μόνο** στην εκκίνηση της εφαρμογής. Δώστε της την δέουσα προσοχή καθώς μόλις περάσετε στην οθόνη του μενού δεν θα είναι πλέον δυνατή η πλοήγηση σας πίσω σε αυτή την οθόνη παρά μόνο αν επανεκκινήσετε την εφαρμογή.\n\n2. Η δεύτερη κύρια οθόνη είναι η οθόνη του μενού. Στην οθόνη αυτή θα βρείτε πέντε κουμπιά. Τα πρώτα τέσσερα είναι τα κουμπιά επιλογής του εκάστοτε παιχνιδιού και το πέμπτο είναι το κουμπί εξόδου που τερματίζει την εφαρμογή.\n\n3. Η τρίτη κύρια οθόνη είναι η οθόνη του εκάστοτε παιχνιδιού και έχει δύο κουμπιά. Το ένα είναι για την επιστροφή σας στο κύριο μενού και το άλλο για τον τερματισμό της εφαρμογής. Καθώς σε αυτή την έκδοση του παιχνιδιού δεν υπάρχει δυνατότητα επανάληψης παιχνιδιού ο μόνος τρόπος να συνεχίσετε να παίζετε είναι μετά το τέλος του παιχνιδιού να επιστρέψετε στην οθόνη του μενού και να επιλέξετε παιχνίδι εκ νέου.\n\n\nΗ λειτουργία της εφαρμογής έχει ως εξής.\n\nΣτην οθόνη του μενού **και μόνο** την πρώτη φορά που θα την επισκεφτείτε η Τίνα η Ρομποτίνα θα σας καλωσορίσει και θα σας ζητήσει το όνομα του χρήστη το οποίο και θα αποθηκεύσει για τις μετέπειτα λειτουργίες της. Έπειτα θα ερωτηθείτε αν θέλετε να παίξετε και εφόσον η απάντηση σας είναι θετική θα σας ζητηθεί να επιλέξετε παιχνίδι. Η μεταφορά σας στο επιλεγέν παιχνίδι γίνεται αυτόματα στη φάση αυτή.\n\nΣε περίπτωση αρνητικής απάντησης ή σε περίπτωση που επιστρέψατε στην οθόνη του μενού από κάποιο παιχνίδι η διαδικασία επιλογής παιχνιδιού γίνεται μόνο χειροκίνητα με το πάτημα του αντίστοιχου κουμπιού.\n\nΣτην οθόνη παιχνιδιού αρχικά θα ακούσετε την προτροπή *'τι είναι;'* ακολουθούμενη από ένα σχήμα/χρώμα/αντικείμενο/ζώο/αριθμό/γράμμα (ανάλογα την επιλογή παιχνιδιού). Η απάντηση σας ακολουθεί την προτροπή και οφείλει να είναι δυνατή και καθαρή και ιδανικά σε ήσυχο περιβάλλον χωρίς έντονους εξωγενείς θορύβους ώστε η απάντηση να ερμηνευτεί σωστά. Αν η απάντηση είναι όντως σωστή και μεταξύ των προεπιλεγμένων θα ακουστεί η επιβεβαίωση *'πολύ σωστά!'*, αν η απάντηση είναι λάθος ή εκτός των προεπιλεγμένων θα ακουστεί η επιβεβαίωση *'λάθος!'* ενώ αν η απάντηση δεν γίνει σωστά αντιληπτή θα ακουστεί το μήνυμα λάθους *'Δεν σε κατάλαβα!'*, έπειτα η οθόνη ανανεώνεται και η διαδικασία επαναλαμβάνεται.\n\nΗ διαδικασία ολοκληρώνεται μετά από δέκα επαναλήψεις οπότε και ακούγεται η επιβεβαίωση 'Μπράβο (όνομα χρήστη)!'.\n\n*Ορισμένες φορές η διαδικασία επιλογής αντικειμένου θα τύχει να δείξει το ίδιο αντικείμενο δύο ή και περισσότερες φορές στη σειρά, σε αυτή τη περίπτωση ακολουθείστε την προτροπή 'τι είναι;'' και απαντήστε ξανά.*\n\nΈπειτα από την ολοκλήρωση των επαναλήψεων μπορείτε να επιλέξετε από τα δύο διαθέσιμα κουμπιά είτε για να επιστρέψετε στο κεντρικό μενού και να διαλέξετε καινούργιο παιχνίδι είτε για να κλείσετε την εφαρμογή."
+        
+        Button:
+            text: "Main Menu"
+            font_size: 22
+            size_hint: 1.0, 0.2
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "left"
+                
+        
+<MenuWindow>:
+    name: "menu"
+    id: MenuWindow
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Image:
+            id:"menu"
+            screen: MenuWindow
+            source: root.tina
+            before_source: self.source
+            
+        BoxLayout:
+            size_hint: 1.0, 0.2
+            Button:
+                text: "Shapes&colours"
+                font_size: 22
+                on_release:
+                    app.root.current = "shapes"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Items&animals"
+                font_size: 22
+                on_release:
+                    app.root.current = "items"
+                    root.manager.transition.direction = "left"
+
+            Button:
+                text: "Numbers"
+                font_size: 22
+                on_release:
+                    app.root.current = "numbers"
+                    root.manager.transition.direction = "left"
+
+            Button:
+                text: "Letters"
+                font_size: 22
+                on_release:
+                    app.root.current = "letters"
+                    root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Exit"
+            font_size: 22
+            size_hint: 1.0, 0.2
+            on_release: app.root.current = exit()
+
+<ShapeGame>:
+    name: "shapes"
+    id: ShapeGame
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Image:
+            id:"shapes"
+            screen: ShapeGame
+            source: root.rand_shape
+            before_source: self.source
+
+        BoxLayout:
+            size_hint: 1.0, 0.2
+            size: root.width, root.height
+            Button:
+                text: "Menu"
+                font_size: 22
+                on_release:
+                    app.root.current = "menu"
+                    root.manager.transition.direction = "right"
+                    
+            Button:
+                text: "Exit"
+                font_size: 22
+                on_release:
+                    app.root.current = exit()
+
+<ItemGame>:
+    name: "items"
+    id: ItemGame
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Image:
+            id:"item"
+            screen: ItemGame
+            source: root.rand_item
+            before_source: self.source
+
+        BoxLayout:
+            size_hint: 1.0, 0.2
+            size: root.width, root.height
+            Button:
+                text: "Menu"
+                font_size: 22
+                on_release:
+                    app.root.current = "menu"
+                    root.manager.transition.direction = "right"
+            Button:
+                text: "Exit"
+                font_size: 22
+                on_release: app.root.current = exit()
+
+<NumberGame>:
+    name: "numbers"
+    id: NumberGame
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Image:
+            id:"number"
+            screen: NumberGame
+            source: root.rand_number
+            before_source: self.source
+
+        BoxLayout:
+            size_hint: 1.0, 0.2
+            size: root.width, root.height
+            Button:
+                text: "Menu"
+                font_size: 22
+                on_release:
+                    app.root.current = "menu"
+                    root.manager.transition.direction = "right"
+            Button:
+                text: "Exit"
+                font_size: 22
+                on_release: app.root.current = exit()
+
+<LetterGame>:
+    name: "letters"
+    id: LetterGame
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Image:
+            id:"letter"
+            screen: LetterGame
+            source: root.rand_letter
+            before_source: self.source
+        BoxLayout:
+            size_hint: 1.0, 0.2
+            size: root.width, root.height
+            Button:
+                text: "Menu"
+                font_size: 22
+                on_release:
+                    app.root.current = "menu"
+                    root.manager.transition.direction = "right"
+            Button:
+                text: "Exit"
+                font_size: 22
+                on_release: app.root.current = exit()
+
