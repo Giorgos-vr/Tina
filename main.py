@@ -7,9 +7,12 @@ from kivy.properties import StringProperty
 from commands import *
 
 
+class IntroWindow(Screen):
+    pass
+
 class MenuWindow(Screen):
     tina = 'menu/tina.png'
-    '''once = False #intro dialogue is only meant to play once
+    once = False #intro dialogue is only meant to play once
     def on_enter(self, *args):
         while MenuWindow.once == False:
             Command.start()
@@ -24,7 +27,7 @@ class MenuWindow(Screen):
                 elif Command.sel == "letters":
                     self.parent.current = "letters"
                 MenuWindow.once = True
-        return MenuWindow.once #intro counter doesn't reset'''
+        return MenuWindow.once #intro counter doesn't reset
 
 class ShapeGame(Screen):
     rand_shape = StringProperty()
@@ -86,8 +89,7 @@ class ShapeGame(Screen):
             else:
                 Clock.unschedule(callback_on_image)
                 ShapeGame.count2 = 0 #reset counter
-                Command.say("Μπράβο!") #"well done" confirms loop completion
-                
+                Command.say(f"Μπράβο {Command.user_name}!") #"well done" confirms loop completion
             return ShapeGame.count2
 
         Clock.schedule_once(callback_on_image)
@@ -144,7 +146,7 @@ class ItemGame(Screen):
             else:
                 Clock.unschedule(callback_on_item)
                 ItemGame.count2 = 0
-                Command.say("Μπράβο!")
+                Command.say(f"Μπράβο {Command.user_name}!")
             return ItemGame.count2
 
         Clock.schedule_once(callback_on_item)
@@ -191,7 +193,7 @@ class NumberGame(Screen):
             else:
                 Clock.unschedule(callback_on_number)
                 NumberGame.count2 = 0
-                Command.say("Μπράβο!")
+                Command.say(f"Μπράβο {Command.user_name}!")
             return NumberGame.count2
 
         Clock.schedule_once(callback_on_number)
@@ -242,7 +244,7 @@ class LetterGame(Screen):
             else:
                 Clock.unschedule(callback_on_letter)
                 LetterGame.count2 = 0
-                Command.say("Μπράβο!")
+                Command.say(f"Μπράβο {Command.user_name}!")
             return LetterGame.count2
 
         Clock.schedule_once(callback_on_letter)
