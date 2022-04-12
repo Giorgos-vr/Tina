@@ -32,7 +32,7 @@ class Command:
 
             try:
                 Command.user_said = r.recognize_google(audio, language = "el-GR")
-                print(Command.user_said)
+                # print(Command.user_said)
             except sr.UnknownValueError:
                 Command.say("Δεν σε κατάλαβα!")
                 Command.user_said = ""
@@ -67,7 +67,7 @@ class Command:
             Command.say("Ποιό παιχνίδι θέλεις να παίξουμε?")
 
         input = Command.audioIn().lower().split(' ')
-        print(input)
+        #print(input)
         shapeSelect = ["σχήμα", "σχήματα", "σχηματάκι", "σχηματάκια", "χρώματα", "χρωματάκια"]
         itemSelect = ["αντικείμενα", "πράγματα", "φρούτα", "φρουτάκια", "ζώα", "ζωάκια"]
         letterSelect = ["γράμμα", "γράμματα", "γραμματάκια", "γραμματάκι", "άλφα", "βήτα", "αλφαβήτα"]
@@ -98,7 +98,7 @@ class Command:
         input = Command.audioIn()
         if Command.bad_read == False:
             select = input.lower().split(' ')
-            print(select)
+            #print(select)
             positive_input = ["ναι", "αμέ", "αχά"]
             if any(word in select for word in positive_input):
                 Command.say("Τέλεια!")
@@ -106,10 +106,10 @@ class Command:
             else:
                 Command.say("Κρίμα!")
                 Command.sel = None
-                print("bad or no input")
+                #print("bad or no input")
                 return Command.sel
         else:
-            print("bad or no input")
+            #print("bad or no input")
             Command.say("Αν θέλεις διάλεξε από το μενού!")
             Command.sel = None
             return Command.sel
