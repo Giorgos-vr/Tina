@@ -1,3 +1,5 @@
+from kivy_deps import sdl2, glew
+
 # -*- mode: python ; coding: utf-8 -*-
 
 
@@ -10,6 +12,7 @@ a = Analysis(['main.py'],
              datas=[],
              hiddenimports=[],
              hookspath=[],
+             hooksconfig={},
              runtime_hooks=[],
              excludes=[],
              win_no_prefer_redirects=False,
@@ -19,21 +22,28 @@ a = Analysis(['main.py'],
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 
+a.datas += [('Main,kv', '\\Tina\Main.kv', 'DATA')]
+
 exe = EXE(pyz,
-          a.scripts,
-          a.binaries,
-          a.zipfiles,
-          a.datas,  
+          a.scripts, 
           [],
+          exclude_binaries=True,
           name='main',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          upx_exclude=[],
-          runtime_tmpdir=None,
-          console=True,
+          console=False,
           disable_windowed_traceback=False,
           target_arch=None,
           codesign_identity=None,
-          entitlements_file=None)
+          entitlements_file=None )
+coll = COLLECT(exe, Tree('\\Tina')
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               [Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)], 
+               strip=False,
+               upx=True,
+               upx_exclude=[],
+               name='main')
