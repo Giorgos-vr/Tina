@@ -6,7 +6,9 @@ As this app is written in Greek I will first go through the description and inst
 
 
 for info, questions and bug reports please email
+
 ########## giorgos_vr[at]gmail[dot]com ##########
+
 για πληροφορίες, ερωτήσεις, παρατηρήσεις στείλτε email στην παραπάνω διεύθυνση
 
 
