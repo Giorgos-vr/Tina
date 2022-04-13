@@ -37,7 +37,7 @@ exe = EXE(pyz,
           target_arch=None,
           codesign_identity=None,
           entitlements_file=None )
-coll = COLLECT(exe, Tree('\\Tina'),
+coll = COLLECT(exe, Tree('.'),
                a.binaries,
                a.zipfiles,
                a.datas,
