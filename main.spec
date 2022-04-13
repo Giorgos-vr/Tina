@@ -41,3 +41,5 @@ coll = COLLECT(exe,
                upx=True,
                upx_exclude=[],
                name='main')
+runtime_tmpdir=None,
+console=true, icon='icon.ico'
