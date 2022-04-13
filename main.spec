@@ -39,4 +39,4 @@ exe = EXE(pyz,
           entitlements_file=None,
           runtime_tmpdir=None,
           console=True, 
-          icon='icon.ico'))
+          icon='icon.ico')
