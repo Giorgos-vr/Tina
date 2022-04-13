@@ -1,5 +1,5 @@
 Kivy
 SpeechRecognition
 playsound
-sys
+kivy_deps
 gTTS
