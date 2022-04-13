@@ -40,6 +40,6 @@ coll = COLLECT(exe,
                strip=False,
                upx=True,
                upx_exclude=[],
-               name='main')
-runtime_tmpdir=None,
-console=true, icon='icon.ico'
+               name='main'
+               runtime_tmpdir=None,
+               console=true, icon='icon.ico')
