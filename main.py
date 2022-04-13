@@ -33,6 +33,8 @@ class MenuWindow(Screen):
                 MenuWindow.once = True
         return MenuWindow.once #intro counter doesn't reset
 
+         
+
 class ShapeGame(Screen):
     rand_shape = StringProperty()
     # These counters control the amount of repetitions of question dialogues and must be consistent
@@ -262,6 +264,9 @@ class MainApp(App):
 
     def build(self):
         return Builder.load_file('Main.kv')
+
+    def end_func(self, *args):
+        App.stop(self)
 
 if __name__ == '__main__':
     MainApp().run()
