@@ -8,7 +8,11 @@ from commands import *
 
 
 class IntroWindow(Screen):
-    pass
+    intro_text = open(r"intro.txt","r", encoding= 'utf-8')
+    label_text = StringProperty(intro_text.read())
+    intro_text.close
+
+    
 
 class MenuWindow(Screen):
     tina = 'menu/tina.png'
