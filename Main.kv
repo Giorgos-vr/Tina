@@ -79,7 +79,7 @@ WindowManager:
             text: "Exit"
             font_size: 22
             size_hint: 1.0, 0.2
-            on_release: app.root.current = exit()
+            on_release: app.root.current = exit(0)
 
 <ShapeGame>:
     name: "shapes"
@@ -107,7 +107,7 @@ WindowManager:
                 text: "Exit"
                 font_size: 22
                 on_release:
-                    app.root.current = exit()
+                    app.root.current = exit(0)
 
 <ItemGame>:
     name: "items"
@@ -133,7 +133,7 @@ WindowManager:
             Button:
                 text: "Exit"
                 font_size: 22
-                on_release: app.root.current = exit()
+                on_release: app.root.current = exit(0)
 
 <NumberGame>:
     name: "numbers"
@@ -159,7 +159,7 @@ WindowManager:
             Button:
                 text: "Exit"
                 font_size: 22
-                on_release: app.root.current = exit()
+                on_release: app.root.current = exit(0)
 
 <LetterGame>:
     name: "letters"
@@ -184,5 +184,5 @@ WindowManager:
             Button:
                 text: "Exit"
                 font_size: 22
-                on_release: app.root.current = exit()
+                on_release: app.root.current = exit(0)
 
