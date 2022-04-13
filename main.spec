@@ -45,4 +45,5 @@ coll = COLLECT(exe, Tree('.'),
                strip=False,
                upx=True,
                upx_exclude=[],
-               name='main')
+               name='main',
+               icon='icon.ico')

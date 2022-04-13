@@ -1,4 +1,5 @@
 Kivy
 SpeechRecognition
 playsound
+sys
 gTTS
