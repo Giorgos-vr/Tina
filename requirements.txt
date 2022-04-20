@@ -1,4 +1,0 @@
-Kivy
-SpeechRecognition
-playsound
-gTTS
